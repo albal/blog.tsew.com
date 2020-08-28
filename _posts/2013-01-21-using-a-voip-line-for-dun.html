@@ -1,0 +1,31 @@
+---
+layout: post
+title: Using a VOIP Line for DUN
+date: 2013-01-21 12:22:08.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2013/01/21/using-a-voip-line-for-dun/"
+---
+<p>DUN, or Dial Up Networking is what we all used to do in the 90’s to get onto the internet.&nbsp; Using a Modem and the Public Switched Telephone Network (PSTN) you could dial-in to another computer or your ISP to transfer data in the digital domain.&nbsp; Today hardly anyone uses Modems over the PSTN, but some systems still require to be able to dial over the telephone network.&nbsp; With leased lines, cable and DSL you may find you do not have a traditional phone line available or accessible to utilise. However, the internet is everywhere and VOIP (Voice Over Internet Protocol) has been around a long time so why not use a modem to dialup over a VOIP line. </p>
+<p>Traditionally VOIP lines utilise very small bandwidths, in the region of 16kbs, but as bandwidth is becoming cheaper and line speeds are increasing it is now possible to get VOIP lines that can handle up to a single 64kbs stream.&nbsp; That is plenty to do V.90 or V.92 session which nearly all modems will support.&nbsp; With some very cheap hardware you will be able to setup a telephone line that can support a modem dial out.</p>
+<p>First you will need an internet VOIP provider that supports G711a or G711u protocols.&nbsp;&nbsp; The provider will also need to provide a termination point in the UK.</p>
+<p><a href="http://albal21.files.wordpress.com/2013/01/200906081846111.jpg"><img title="20090608184611" style="margin:10px;display:inline;border-width:0;" border="0" alt="20090608184611" align="left" src="{{ site.baseurl }}/assets/20090608184611_thumb1.jpg" width="194" height="244" /></a>Also you will need a phone adapter, to enable you to plug your modem (or STB) into what it thinks is a regular phone line but to have the call handled in the IP domain.&nbsp; The most cost effective unit is the Linksys <a href="http://www.cisco.com/en/US/products/ps10029/index.html" target="_blank">PAP2</a>.&nbsp; You can <a href="http://www.ebay.co.uk/sch/i.html?_nkw=PAP2+unlocked+-like&amp;_sacat=0&amp;_odkw=PAP2+unlocked&amp;_osacat=0&amp;_from=R40" target="_blank">pick these up for around £20</a> (less than 2 months line rental with most phone-line providers).</p>
+<p>Please refer to your service provider for the exact setup details for your line.&nbsp; You then only have to make a few modifications that will be outlined below.</p>
+<p>You need to change the preferred codec to either G711u or G711a, you may find one works better than the other, u-Law is preferred (actually it’s mu-law, and should be the Greek letter μ).&nbsp; You have to select ‘yes’ to ‘Use Pref Codec Only’.&nbsp; On the right hand side you should select ‘No’ to all the echo cancellation and detection options.&nbsp; All other options not highlighted can be left as default or how Sipgate show them.</p>
+<p>&nbsp;</p>
+<p><a href="http://albal21.files.wordpress.com/2013/01/image1.png"><img title="image" style="display:inline;border-width:0;" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb1.png" width="653" height="352" /></a></p>
+<p>That should be it.&nbsp; You’ll have to check your line is up by calling in on your number.&nbsp; Then check you can dial out too.&nbsp; If all is well then so long as you have the available bandwidth and a clean internet connection then a modem dialup should work just fine.</p>
+<p>I’ve tested this successfully with a UK Sky HD+ Box, a PAP2T and and my VOIP line running over a Virgin Media cable connection.&nbsp; Feel free to post in the comments what worked for you.</p>

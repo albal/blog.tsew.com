@@ -1,0 +1,45 @@
+---
+layout: post
+title: Setting up mediasmartserverd for Centos 7 on EX490
+date: 2018-07-16 08:17:28.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  timeline_notification: '1531729049'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '20056345503'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/07/16/setting-up-mediasmartserverd-for-centos-7-on-ex490/"
+---
+<p>This post details setting up mediasmartserverd under Centos 7 on an HP EX490. This allows for the status LED to be used as an indicator for updates and also the drive lights to be illuminated according to disk state/activity. The mediasmartserverd binary is built on the local machine:<br />
+<code>yum -y install wget zip libudev-devel<br />
+yum -y groupinstall "Development Tools"<br />
+wget https://github.com/merelin/mediasmartserverd/archive/0.5.6.tar.gz<br />
+tar -zxvf 0.5.6.tar.gz<br />
+cd mediasmartserverd-0.5.6<br />
+make<br />
+cp mediasmartserverd /usr/local/sbin/<br />
+vi /usr/lib/systemd/system/mediasmartserverd.service</code></p>
+<p>The enter the following into the file and exit with <code>[Esc]:wq</code>:</p>
+<p><code>[Unit]<br />
+Description=MediaSmartServer</p>
+<p>[Service]<br />
+ExecStart=/usr/local/sbin/mediasmartserverd --activity --update-monitor<br />
+Restart=always</p>
+<p>[Install]<br />
+WantedBy=multi-user.target<br />
+</code></p>
+<p>Then enable and start the service:<br />
+<code>systemctl enable mediasmartserverd.service<br />
+systemctl start mediasmartserverd.service</code></p>

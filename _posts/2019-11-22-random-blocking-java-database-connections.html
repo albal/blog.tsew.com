@@ -1,0 +1,27 @@
+---
+layout: post
+title: random blocking Java database connections
+date: 2019-11-22 15:06:33.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '37693818858'
+  timeline_notification: '1574435194'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2019/11/22/random-blocking-java-database-connections/"
+---
+<p>So I came across a problem with a Java App not being able to open a connection to an Oracle Database.  It wasn't a problem with Credentials or the SID but a failure to connect.  After a bit of digging I found that there wasn't enough entropy in the system to get the required amount of bytes from /dev/random - the solution is to edit java.security to use /dev/urandom instead:</p>
+<pre><span>securerandom.source=file:/dev/urandom
+</span></pre>

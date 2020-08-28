@@ -1,0 +1,28 @@
+---
+layout: post
+title: Connecting a P2000 G3 Storage Array to System Center Virtual Machine Manager
+  Sp1
+date: 2013-02-13 11:59:12.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2013/02/13/connecting-a-p2000-g3-storage-array-to-system-center-virtual-machine-manager-sp1-2/"
+---
+<p>I have a <a href="http://www.amazon.com/gp/product/B0038T4M0O/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B0038T4M0O&amp;linkCode=as2&amp;tag=prbox-20" target="_blank">P2000 G3 Storage Array</a> that I wish to use with System Center 2012 VMM SP1.&nbsp; Both support SMI-S, so configuring should be straightforward right?</p>
+<p>Make sure you are running the latest version of the P2000 Firmware, you can get it from <a href="http://h20000.www2.hp.com/bizsupport/TechSupport/SoftwareIndex.jsp?lang=en&amp;cc=us&amp;prodNameId=4118572&amp;prodTypeId=12169&amp;prodSeriesId=4118559&amp;swLang=13&amp;taskId=135&amp;swEnvOID=1005#29214" target="_blank">hp.com</a></p>
+<p>First create a new user on your P2000 using the web control panel, smiuser.&nbsp; In VMM create a new Run As account with the same credentials.</p>
+<p>Then go to Fabric, and right click on Storage-&gt;Arrays and select to add your P2000.&nbsp; You need to use the following settings:</p>
+<p><a href="http://albal21.files.wordpress.com/2013/01/image.png"><img title="image" style="display:inline;border-width:0;" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb.png" width="644" height="457" /></a></p>
+<p>Make sure you either tick the Use SSL option depending on your setting on your HP 2000.&nbsp; After a minute or so you should be greeted with the option to scan the device.</p>

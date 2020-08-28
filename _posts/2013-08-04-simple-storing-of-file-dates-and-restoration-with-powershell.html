@@ -1,0 +1,30 @@
+---
+layout: post
+title: Simple Storing of File Dates and Restoration with PowerShell
+date: 2013-08-04 21:03:34.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- PowerShell
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2013/08/04/simple-storing-of-file-dates-and-restoration-with-powershell/"
+---
+<p>All sorts of things mess around with file dates and of concern to me was a number of home videos I transcoded that ended up with new file creation dates that I wanted to retain against the original write time.&nbsp; We can handle this in Windows with a little PowerShell.&nbsp; I’ll assume here that all files are in the same path and without their extensions, all files have unique names.</p>
+<p>First capture the original creation dates:</p>
+<p><font color="#000000" size="2" face="Lucida Console" /></p>
+<p align="left"><font color="#0000ff" size="1" face="Lucida Console">dir</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#a9a9a9" size="1" face="Lucida Console">|</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#0000ff" size="1" face="Lucida Console">Export-CSV</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#8a2be2" size="1" face="Lucida Console">originaldates.csv </font></p>
+<p>After your file edits are complete you use the following script (note there is line in there that will swap the extension):</p>
+<p><font color="#000000" size="2" face="Lucida Console" /></p>
+<p align="left"><font color="#0000ff" size="1" face="Lucida Console">Import-Csv</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#8a2be2" size="1" face="Lucida Console">originaldates.csv</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#a9a9a9" size="1" face="Lucida Console">|</font><font color="#000000" size="1" face="Lucida Console"> ` <br /></font><font color="#0000ff" size="1" face="Lucida Console">&nbsp;&nbsp;&nbsp; ForEach-Object</font><font color="#000000" size="1" face="Lucida Console"> { <br /></font><font color="#ff4500" size="1" face="Lucida Console">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $originalFile</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#a9a9a9" size="1" face="Lucida Console">=</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#ff4500" size="1" face="Lucida Console">$_</font><font color="#a9a9a9" size="1" face="Lucida Console">.</font><font color="#000000" size="1" face="Lucida Console">Name <br /></font><font color="#ff4500" size="1" face="Lucida Console">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $newFile</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#a9a9a9" size="1" face="Lucida Console">=</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#ff4500" size="1" face="Lucida Console">$originalFile</font><font color="#a9a9a9" size="1" face="Lucida Console">.</font><font color="#000000" size="1" face="Lucida Console">Split(</font><font color="#8b0000" size="1" face="Lucida Console">"."</font><font color="#000000" size="1" face="Lucida Console">)</font><font color="#a9a9a9" size="1" face="Lucida Console">[</font><font color="#800080" size="1" face="Lucida Console">0</font><font color="#a9a9a9" size="1" face="Lucida Console">]</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#a9a9a9" size="1" face="Lucida Console">+</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#8b0000" size="1" face="Lucida Console">".mp4"</font><font color="#000000" size="1" face="Lucida Console"> <br /></font><font color="#ff4500" size="1" face="Lucida Console">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $oldDate</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#a9a9a9" size="1" face="Lucida Console">=</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#0000ff" size="1" face="Lucida Console">get-date</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#000080" size="1" face="Lucida Console">-date</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#ff4500" size="1" face="Lucida Console">$_</font><font color="#a9a9a9" size="1" face="Lucida Console">.</font><font color="#000000" size="1" face="Lucida Console">LastWriteTime <br /></font><font color="#0000ff" size="1" face="Lucida Console">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Get-ItemProperty</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#000080" size="1" face="Lucida Console">-Path</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#ff4500" size="1" face="Lucida Console">$newFile</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#a9a9a9" size="1" face="Lucida Console">|</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#0000ff" size="1" face="Lucida Console">ForEach-Object</font><font color="#000000" size="1" face="Lucida Console"> { </font><font color="#ff4500" size="1" face="Lucida Console">$_</font><font color="#a9a9a9" size="1" face="Lucida Console">.</font><font color="#000000" size="1" face="Lucida Console">LastWriteTime </font><font color="#a9a9a9" size="1" face="Lucida Console">=</font><font color="#000000" size="1" face="Lucida Console"> </font><font color="#ff4500" size="1" face="Lucida Console">$oldDate</font><font color="#000000" size="1" face="Lucida Console"> } <br />&nbsp;&nbsp;&nbsp; } </font></p>
+<p>This post is mostly a reminder for me but might help you out too.&nbsp; Always backup before changing files and be careful!</p>

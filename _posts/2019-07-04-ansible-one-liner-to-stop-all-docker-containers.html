@@ -1,0 +1,26 @@
+---
+layout: post
+title: Ansible one liner to stop all docker containers
+date: 2019-07-04 14:44:25.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  timeline_notification: '1562251468'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '32485290990'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2019/07/04/ansible-one-liner-to-stop-all-docker-containers/"
+---
+<pre> ansible -a "docker ps -aq | xargs docker stop" docker</pre>
+<p>Where docker is a list of hosts in ansible</p>

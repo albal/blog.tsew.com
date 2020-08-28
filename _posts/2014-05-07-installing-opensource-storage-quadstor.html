@@ -1,0 +1,35 @@
+---
+layout: post
+title: Installing OpenSource Storage QuadStor
+date: 2014-05-07 16:53:32.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Client Software
+- VMware
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2014/05/07/installing-opensource-storage-quadstor/"
+---
+<p>No need to describe it – google Quadstor to find out more.&nbsp; Here is a simple way to install on Debian 7 Net Install (64 bit of course):</p>
+<div id="scid:9D7513F9-C04C-4721-824A-2B34F0212519:85594331-e454-46f7-a98d-3adc49683c40" class="wlWriterEditableSmartContent" style="float:none;margin:0;display:inline;padding:0;">
+<pre style="width:932px;height:190px;background-color:White;overflow:auto;" />
+<div><span style="color:#000000;">apt</span><span style="color:#000000;">-</span><span style="color:#000000;">get install uuid</span><span style="color:#000000;">-</span><span style="color:#000000;">runtime build</span><span style="color:#000000;">-</span><span style="color:#000000;">essential sg3</span><span style="color:#000000;">-</span><span style="color:#000000;">utils apache2 psmisc linux</span><span style="color:#000000;">-</span><span style="color:#000000;">headers</span><span style="color:#000000;">-</span><span style="color:#000000;">`uname </span><span style="color:#000000;">-</span><span style="color:#000000;">r` ntp git sudo<br />
+vi </span><span style="color:#000000;">/</span><span style="color:#000000;">etc</span><span style="color:#000000;">/</span><span style="color:#000000;">ntp.conf<br />
+service ntp restart<br />
+cd </span><span style="color:#000000;">/</span><span style="color:#000000;">root<br />
+git clone </span><span style="color:#000000;">--</span><span style="color:#000000;">branch opensource https:</span><span style="color:#000000;">//</span><span style="color:#000000;">github.com</span><span style="color:#000000;">/</span><span style="color:#000000;">quadstor</span><span style="color:#000000;">/</span><span style="color:#000000;">quadstorvirt.git quadstor<br />
+cd quadstor<br />
+.</span><span style="color:#000000;">/</span><span style="color:#000000;">installworld debian7<br />
+</span></div>
+<p><!-- Code inserted with Steve Dunn's Windows Live Writer Code Formatter Plugin.  http://dunnhq.com --></div>

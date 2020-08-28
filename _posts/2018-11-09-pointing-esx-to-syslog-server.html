@@ -1,0 +1,30 @@
+---
+layout: post
+title: Pointing ESX to Syslog server
+date: 2018-11-09 12:41:42.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '24083621296'
+  timeline_notification: '1541767303'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/11/09/pointing-esx-to-syslog-server/"
+---
+<p>It has been possible for a while to send system logs to a syslog server over the network.  In your Linux server edit syslog server to enable listening on port 514 for both UDP and TCP connections.  Restart rsyslog and make the following changes to your ESX Cluster using PowerCLI:</p>
+<pre>Connect-VIServer 192.168.0.10 
+Get-VMHost | Set-VMHostSysLogServer -SysLogServer 'udp://192.168.0.130:514' 
+Get-VMHost | Get-VMHostFirewallException -Name syslog | Set-VMHostFirewallException -Enabled:$True 
+$esxcli = Get-ESXCLI -VMHost 192.168.0.17 
+$esxcli.system.syslog.reload()</pre>

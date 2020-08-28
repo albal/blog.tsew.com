@@ -1,0 +1,30 @@
+---
+layout: post
+title: Splitting and Tagging FLAC
+date: 2019-10-18 13:05:34.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '36478911533'
+  timeline_notification: '1571403935'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2019/10/18/splitting-and-tagging-flac/"
+---
+<p>Use my special docker image:</p>
+<pre>docker run -ti -v /FLAC/The\ KLF/Chill\ Out/:/opt albal/cuetools /bin/bash</pre>
+<p>In the container run:</p>
+<pre>shnsplit -f Chill\ Out.cue -t %n-%t -o flac Chill\ Out.flac
+cuetag Chill\ Out.cue [0-9]*.flac</pre>
+<p>&nbsp;</p>

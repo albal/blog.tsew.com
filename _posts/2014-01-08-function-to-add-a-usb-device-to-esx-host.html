@@ -1,0 +1,91 @@
+---
+layout: post
+title: Function to Add a USB Device to ESX Host
+date: 2014-01-08 14:08:16.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- PowerShell
+- VMware
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2014/01/08/function-to-add-a-usb-device-to-esx-host/"
+---
+<p>PowerCLI has a function to remove a USB device from a host, <a href="https://www.vmware.com/support/developer/PowerCLI/PowerCLI55/html/Remove-UsbDevice.html" target="_blank">Remove-UsbDevice</a>. However, what if you need to add a usb device to a VM.&nbsp; Well you can with a bit of PowerCLI magic.&nbsp; This solution assumes the device you wish to add remains in the same USB port and that the VM will be on the same host as the USB device of interest.&nbsp; If you wish you can hack around to insert the host ID and change from path: option to pid: and vid: options.&nbsp; You can read more about the option at <a href="http://pubs.vmware.com/vsphere-55/index.jsp#com.vmware.wssdk.apiref.doc/vim.vm.device.VirtualUSB.USBBackingInfo.html" target="_blank">VMware pubs</a>.</p>
+<p>Below is a simple function for Add-UsbDevice. It takes a VM name (wildcard if you know it will be unique for ease) and then the path is normally in the form of BUS/0/DEVICE i.e. “2/0/5”. </p>
+<p>
+<div id="scid:9D7513F9-C04C-4721-824A-2B34F0212519:17961bd0-036b-4bb2-840d-9b90524238b0" class="wlWriterEditableSmartContent" style="float:none;margin:0;display:inline;padding:0;">
+<pre style="width:858px;height:994px;background-color:White;overflow:auto;" /><div><span style="color:#008080;"> 1</span> <span style="color:#008000;">#
+</span><span style="color:#008080;"> 2</span> <span style="color:#008000;">#</span><span style="color:#008000;"> Simple to use once connected to the server of interest (not vCenter)</span><span style="color:#008000;">
+</span><span style="color:#008080;"> 3</span> <span style="color:#008000;">#</span><span style="color:#008000;"> Set-UsbDevice -Name &quot;My VM Name&quot; -UsbPath &quot;2/0/5&quot;</span><span style="color:#008000;">
+</span><span style="color:#008080;"> 4</span> <span style="color:#008000;">#
+</span><span style="color:#008080;"> 5</span> <span style="color:#008000;">#</span><span style="color:#008000;"> Find out the UsbPath from lsusb - typically  BUS/0/DEVICE - but not guaranteed!</span><span style="color:#008000;">
+</span><span style="color:#008080;"> 6</span> <span style="color:#008000;">#
+</span><span style="color:#008080;"> 7</span> <span style="color:#008000;"></span><span style="color:#000000;">
+</span><span style="color:#008080;"> 8</span> <span style="color:#000000;"></span><span style="color:#0000FF;">Function</span><span style="color:#000000;"> Set</span><span style="color:#000000;">-</span><span style="color:#000000;">UsbDevice
+</span><span style="color:#008080;"> 9</span> <span style="color:#000000;">{
+</span><span style="color:#008080;">10</span> <span style="color:#000000;">
+</span><span style="color:#008080;">11</span> <span style="color:#000000;"> </span><span style="color:#008000;">#</span><span style="color:#008000;"> We need both parameters</span><span style="color:#008000;">
+</span><span style="color:#008080;">12</span> <span style="color:#008000;"></span><span style="color:#000000;"> [CmdletBinding()]
+</span><span style="color:#008080;">13</span> <span style="color:#000000;"> </span><span style="color:#0000FF;">Param</span><span style="color:#000000;">(
+</span><span style="color:#008080;">14</span> <span style="color:#000000;">  [Parameter(Mandatory</span><span style="color:#000000;">=</span><span style="color:#0000FF;">$True</span><span style="color:#000000;">,Position</span><span style="color:#000000;">=</span><span style="color:#000000;">1</span><span style="color:#000000;">)]
+</span><span style="color:#008080;">15</span> <span style="color:#000000;">   [string]</span><span style="color:#800080;">$Name</span><span style="color:#000000;">,
+</span><span style="color:#008080;">16</span> <span style="color:#000000;">    
+</span><span style="color:#008080;">17</span> <span style="color:#000000;">   [Parameter(Mandatory</span><span style="color:#000000;">=</span><span style="color:#0000FF;">$True</span><span style="color:#000000;">)]
+</span><span style="color:#008080;">18</span> <span style="color:#000000;">   [string]</span><span style="color:#800080;">$UsbPath</span><span style="color:#000000;">
+</span><span style="color:#008080;">19</span> <span style="color:#000000;"> )
+</span><span style="color:#008080;">20</span> <span style="color:#000000;">   
+</span><span style="color:#008080;">21</span> <span style="color:#000000;"> </span><span style="color:#008000;">#</span><span style="color:#008000;">Get our VM then then ID</span><span style="color:#008000;">
+</span><span style="color:#008080;">22</span> <span style="color:#008000;"></span><span style="color:#000000;"> </span><span style="color:#800080;">$VM</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> Get</span><span style="color:#000000;">-</span><span style="color:#000000;">VM </span><span style="color:#800080;">$Name</span><span style="color:#000000;">  
+</span><span style="color:#008080;">23</span> <span style="color:#000000;"> </span><span style="color:#800080;">$Id</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#800080;">$VM</span><span style="color:#000000;">.Id  
+</span><span style="color:#008080;">24</span> <span style="color:#000000;">   
+</span><span style="color:#008080;">25</span> <span style="color:#000000;"> </span><span style="color:#008000;">#</span><span style="color:#008000;">Create a new Virtual Machine Configuration Specification</span><span style="color:#008000;">
+</span><span style="color:#008080;">26</span> <span style="color:#008000;"></span><span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> New</span><span style="color:#000000;">-</span><span style="color:#000000;">Object VMware.Vim.VirtualMachineConfigSpec  
+</span><span style="color:#008080;">27</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange </span><span style="color:#000000;">=</span><span style="color:#000000;"> New</span><span style="color:#000000;">-</span><span style="color:#000000;">Object VMware.Vim.VirtualDeviceConfigSpec[] (</span><span style="color:#000000;">1</span><span style="color:#000000;">)  
+</span><span style="color:#008080;">28</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">] </span><span style="color:#000000;">=</span><span style="color:#000000;"> New</span><span style="color:#000000;">-</span><span style="color:#000000;">Object VMware.Vim.VirtualDeviceConfigSpec  
+</span><span style="color:#008080;">29</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].operation </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">add</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">  
+</span><span style="color:#008080;">30</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].device </span><span style="color:#000000;">=</span><span style="color:#000000;"> New</span><span style="color:#000000;">-</span><span style="color:#000000;">Object VMware.Vim.VirtualUSB  
+</span><span style="color:#008080;">31</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].device.key </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#000000;">-</span><span style="color:#000000;">100</span><span style="color:#000000;">  
+</span><span style="color:#008080;">32</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].device.backing </span><span style="color:#000000;">=</span><span style="color:#000000;"> New</span><span style="color:#000000;">-</span><span style="color:#000000;">Object VMware.Vim.VirtualUSBUSBBackingInfo  
+</span><span style="color:#008080;">33</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].device.backing.deviceName </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">path:$UsbPath host:localhost</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">  
+</span><span style="color:#008080;">34</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].device.connectable </span><span style="color:#000000;">=</span><span style="color:#000000;"> New</span><span style="color:#000000;">-</span><span style="color:#000000;">Object VMware.Vim.VirtualDeviceConnectInfo
+</span><span style="color:#008080;">35</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].device.connectable.startConnected </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#0000FF;">$true</span><span style="color:#000000;">  
+</span><span style="color:#008080;">36</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].device.connectable.allowGuestControl </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#0000FF;">$false</span><span style="color:#000000;">  
+</span><span style="color:#008080;">37</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].device.connectable.connected </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#0000FF;">$true</span><span style="color:#000000;">  
+</span><span style="color:#008080;">38</span> <span style="color:#000000;"> </span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">.deviceChange[</span><span style="color:#000000;">0</span><span style="color:#000000;">].device.connected </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#0000FF;">$false</span><span style="color:#000000;">  
+</span><span style="color:#008080;">39</span> <span style="color:#000000;">   
+</span><span style="color:#008080;">40</span> <span style="color:#000000;"> </span><span style="color:#800080;">$_this</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> Get</span><span style="color:#000000;">-</span><span style="color:#000000;">View </span><span style="color:#000000;">-</span><span style="color:#000000;">Id </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">$Id</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">  
+</span><span style="color:#008080;">41</span> <span style="color:#000000;"> </span><span style="color:#800080;">$_this</span><span style="color:#000000;">.ReconfigVM_Task(</span><span style="color:#800080;">$newSpec</span><span style="color:#000000;">)  
+</span><span style="color:#008080;">42</span> <span style="color:#000000;">
+</span><span style="color:#008080;">43</span> <span style="color:#000000;">}</span></div><!-- Code inserted with Steve Dunn's Windows Live Writer Code Formatter Plugin.  http://dunnhq.com --></div></p>
+<p>If you want to find out the path on your host then using the shell you can use <font face="Courier New">lsusb</font>:</p>
+<p>
+<div id="scid:9D7513F9-C04C-4721-824A-2B34F0212519:f080ca5d-9a85-48eb-a4d1-0787b39273a5" class="wlWriterEditableSmartContent" style="float:none;margin:0;display:inline;padding:0;"><pre class="brush: bash; gutter: false; first-line: 1; tab-size: 4;  toolbar: false;  width: 539px; height: 276px;" style="width:539px;height:276px;overflow:auto;">~ # lsusb
+Bus 02 Device 06: ID 0424:4030 Standard Microsystems Corp.
+Bus 02 Device 05: ID 03f0:1fe0 Hewlett-Packard
+Bus 02 Device 04: ID 0fde:ca04
+Bus 02 Device 03: ID 0424:2660 Standard Microsystems Corp.
+Bus 02 Device 02: ID 8087:8000 Intel Corp.
+Bus 02 Device 01: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 01 Device 04: ID 0a12:0001 Cambridge Silicon Radio
+Bus 01 Device 03: ID 0403:6001 Future Technology Devices
+Bus 01 Device 02: ID 8087:8008 Intel Corp.
+Bus 01 Device 01: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 03 Device 01: ID 1d6b:0001 Linux Foundation 1.1 root hub</pre>
+<p><!-- Code inserted with Steve Dunn's Windows Live Writer Code Formatter Plugin.  http://dunnhq.com --></div>
+<p>Use the command like this in PowerCLI once you have connected to the Host:</p>
+<div id="scid:9D7513F9-C04C-4721-824A-2B34F0212519:71cd4f61-621d-4c1d-bc1c-6c0253eff356" class="wlWriterEditableSmartContent" style="float:none;margin:0;display:inline;padding:0;">
+<pre style="width:400px;height:26px;background-color:White;overflow:auto;" />
+<div><span style="color:#000000;">Set</span><span style="color:#000000;">-</span><span style="color:#000000;">UsbDevice </span><span style="color:#000000;">-</span><span style="color:#000000;">name </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">vSphere *</span><span style="color:#800000;">&quot;</span><span style="color:#000000;"> </span><span style="color:#000000;">-</span><span style="color:#000000;">UsbPath </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">2/0/5</span><span style="color:#800000;">&quot;</span></div>
+<p><!-- Code inserted with Steve Dunn's Windows Live Writer Code Formatter Plugin.  http://dunnhq.com --></div>
+<p>Any questions then please leave a comment.</p>

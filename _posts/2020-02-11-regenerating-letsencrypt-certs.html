@@ -1,0 +1,31 @@
+---
+layout: post
+title: Regenerating LetsEncrypt Certs
+date: 2020-02-11 10:35:59.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '40564182306'
+  timeline_notification: '1581417359'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2020/02/11/regenerating-letsencrypt-certs/"
+---
+<p>Easy way to update LetsEncrypt certs</p>
+<p>stop letsencrypt</p>
+<pre>%s/HTTPS_METHOD=redirect/HTTPS_METHOD=noredirect</pre>
+<p>start letsencrypt</p>
+<pre>%s/HTTPS_METHOD=noredirect/HTTPS_METHOD=redirect</pre>
+<p>quit and verify</p>
+<pre>echo | openssl s_client -servername HostName -connect HostName:443 2&gt;/dev/null | openssl x509 -noout -dates</pre>

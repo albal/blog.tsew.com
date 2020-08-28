@@ -1,0 +1,42 @@
+---
+layout: post
+title: Setting up EX490 LEDs in Ubuntu
+date: 2015-01-03 19:11:15.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- MediaSmart Server
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2015/01/03/setting-up-ex490-leds-in-ubuntu/"
+---
+<p>Download the software</p>
+<p>wget https://github.com/merelin/mediasmartserverd/archive/master.zip</p>
+<p>unzip master.zip</p>
+<p>cd mediasmartserverd-master/</p>
+<p>make</p>
+<p>cp mediasmartserverd /usr/bin/</p>
+<p>&nbsp;</p>
+<p>Create a new startup script in /etc/init/mediasmartserverd.conf</p>
+<p>
+<div id="scid:9D7513F9-C04C-4721-824A-2B34F0212519:364dcd1c-4873-4590-a5c1-5d042bd1fb64" class="wlWriterEditableSmartContent" style="float:none;margin:0;display:inline;padding:0;">
+<pre style="width:584px;height:264px;background-color:White;overflow:auto;" />
+<div><span style="color:#000000;">#<br />
+# This task is run on startup to set the mediasmartserverd LEDs<br />
+#</p>
+<p>description     &quot;set MediaSmart Server LEDs&quot;</p>
+<p>start on startup</p>
+<p>task<br />
+exec /usr/bin/mediasmartserverd -D<br />
+</span></div>
+<p><!-- Code inserted with Steve Dunn's Windows Live Writer Code Formatter Plugin.  http://dunnhq.com --></div></p>

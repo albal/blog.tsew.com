@@ -1,0 +1,30 @@
+---
+layout: post
+title: Setting up Windows Server Essentials 2016 Clients
+date: 2019-01-04 20:21:25.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Windows Home Server
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '26177812845'
+  timeline_notification: '1546633285'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2019/01/04/setting-up-windows-server-essentials-2016-clients/"
+---
+<p>You possibly don't want your client computer joined to a domain nor any messing around with your client computer DNS settings either.  So here are the three commands you need to run in an elevated command prompt on your client computer.</p>
+<pre>reg add "<span class="hljs-string">HKLM</span>\SOFTWARE\Microsoft\Windows Server\Networking\ClientDns" /v SkipAutoDnsConfig /t REG_DWORD /d 1
+reg add "<span class="hljs-string">HKLM</span>\SOFTWARE\Microsoft\Windows Server\Networking\ServerDiscovery" /v SkipAutoDNSServerDetection /t REG_SZ /d true
+reg add <span class="hljs-string">"HKLM\SOFTWARE\Microsoft\Windows Server\ClientDeployment"</span> /v SkipDomainJoin /t REG_DWORD /d <span class="hljs-number">1</span></pre>
+<p>&nbsp;</p>

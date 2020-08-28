@@ -1,0 +1,35 @@
+---
+layout: post
+title: Show used and provisioned disk sizes in ESX
+date: 2017-07-26 20:23:19.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '7520604471'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2017/07/26/show-used-and-provisioned-disk-sizes-in-esx/"
+---
+<p>Some simple powershell to show the used and provisioned size of disks in VMware</p>
+<blockquote><p>$report = @()<br />
+foreach ($vm in Get-VM){<br />
+$view = Get-View $vm<br />
+$row = '' | select Name, Provisioned, Actual, Thin<br />
+$row.Name = $vm.Name<br />
+$row.Provisioned = [math]::round($vm.ProvisionedSpaceGB , 2)<br />
+$row.Actual = [math]::round(($vm.UsedSpaceGB ) , 2)<br />
+$row.Thin = $view.config.hardware.Device.Backing.ThinProvisioned | Out-String<br />
+$report += $row<br />
+}<br />
+$report | Sort Actual</p></blockquote>

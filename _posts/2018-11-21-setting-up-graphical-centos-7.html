@@ -1,0 +1,27 @@
+---
+layout: post
+title: Setting up graphical Centos 7
+date: 2018-11-21 12:08:25.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '24498152908'
+  timeline_notification: '1542802105'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/11/21/setting-up-graphical-centos-7/"
+---
+<p>yum group install "KDE Plasma Workspaces"</p>
+<p>grubby --update-kernel=ALL --args="video=hyperv_fb:1920x1080"</p>
+<p>systemctl set-default graphical.target</p>

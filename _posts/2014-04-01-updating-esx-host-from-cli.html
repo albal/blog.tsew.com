@@ -1,0 +1,30 @@
+---
+layout: post
+title: Updating ESX Host from CLI
+date: 2014-04-01 14:29:39.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- VMware
+tags: []
+meta:
+  _publicize_pending: '1'
+  _oembed_28d48337260131110b5847b22e1572eb: "{{unknown}}"
+  _oembed_0695fe25b99a79718892857394bd03c1: "{{unknown}}"
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2014/04/01/updating-esx-host-from-cli/"
+---
+<p>vim-cmd vmsvc/power.shutdown ID</p>
+<p>esxcli system maintenanceMode set -e yes</p>
+<p>esxcli software vib update --dry-run -d <a href="http://vibsdepot.hp.com/index.xml">http://vibsdepot.hp.com/index.xml</a></p>
+<p>esxcli software vib install –dry-run -d <a href="http://vibsdepot.hp.com/index.xml">http://vibsdepot.hp.com/index.xml</a></p>
+<p>esxcli system maintenanceMode set -e no</p>
+<p>reboot</p>

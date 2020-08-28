@@ -1,0 +1,28 @@
+---
+layout: post
+title: Putting Jira behind a HTTP Proxy
+date: 2014-04-22 14:59:19.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags: []
+meta:
+  _publicize_pending: '1'
+  _oembed_0ce843a6a642ba1d87d402c977b89ff9: "{{unknown}}"
+  _oembed_f9d6a2397e94dbc2c2532ab021459454: "{{unknown}}"
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2014/04/22/putting-jira-behind-a-http-proxy/"
+---
+<p>If you run Jira behind a http proxy, namely https (ssl) then you need to add three options to the server.xml file in /opt/atlassian/jira/conf:</p>
+<p>scheme="https"<br />proxyName="sub.domain.tld"<br />proxyPort="443"</p>
+<p>The only change needed to vanilla Jira.&nbsp; Then in something like nginx you have the line:</p>
+<p>proxy_pass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://192.168.1.123:8080">http://192.168.1.123:8080</a>;</p>

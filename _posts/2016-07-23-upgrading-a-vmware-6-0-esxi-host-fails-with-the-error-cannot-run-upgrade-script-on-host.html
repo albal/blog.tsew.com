@@ -1,0 +1,27 @@
+---
+layout: post
+title: 'Upgrading a VMware 6.0 ESXi host fails with the error: Cannot run upgrade
+  script on host'
+date: 2016-07-23 21:58:15.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '25088603409'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2016/07/23/upgrading-a-vmware-6-0-esxi-host-fails-with-the-error-cannot-run-upgrade-script-on-host/"
+---
+<p>I had a problem in that updates were not successful on the cluster.  Many reports for the error message "Upgrading a VMware ESXi host fails with the error: Cannot run upgrade script on host" point to removing the FDM installation using the uninstall.sh</p>
+<blockquote><p>/opt/vmware/uninstallers/VMware-fdm-uninstall.sh</p></blockquote>
+<p>However I didn't have the uninstallers directory on my ESX boxes. My solution was to enable HA on the cluster then removed HA on the cluster and after that updates worked fine.</p>

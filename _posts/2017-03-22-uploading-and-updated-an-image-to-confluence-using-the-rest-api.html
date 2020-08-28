@@ -1,0 +1,30 @@
+---
+layout: post
+title: Uploading and updating an Image to Confluence using the REST API
+date: 2017-03-22 16:34:51.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '3153509856'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2017/03/22/uploading-and-updated-an-image-to-confluence-using-the-rest-api/"
+---
+<p>If you have automated systems sometimes it is useful to have them interact with your documentation from time to time.  Using the Confluence REST API you can upload an image as an attachment to the page and later update it if required.  If you follow the Atlassian documentation you end up getting a denied request for the update as it wishes for the new file to have a different filename.<br />
+Below are the curl lines to post and then update the image.  Change your page ID and attachment ID as required:</p>
+<pre>curl -D- -k -u $user:$pass -p -H "X-Atlassian-Token: nocheck" -X POST \ 
+ -F file=@cake.jpg https://confluence.domain.tld/confluence/rest/api/content/$page_id/child/attachment</pre>
+<pre>curl -D- -k -u $user:$pass -p -H "X-Atlassian-Token: nocheck" -X POST \
+ -F file=@cake.jpg https://confluence.domain.tld/confluence/rest/api/content/$page_id/child/attachment/$attach_id/data</pre>
+<p>In the first request you should have a JSON response with Results-&gt;ID-&gt;att123456 - the attach_id to be used above is just the numeric part of this string, i.e. 123456.</p>

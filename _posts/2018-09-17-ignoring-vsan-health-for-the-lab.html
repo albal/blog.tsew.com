@@ -1,0 +1,49 @@
+---
+layout: post
+title: Ignoring VSAN health for the lab
+date: 2018-09-17 13:53:19.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- VMware
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '22238356671'
+  timeline_notification: '1537192400'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/09/17/ignoring-vsan-health-for-the-lab/"
+---
+<p>In the Lab we probably don't run production level hardware on the VMware HCL.  So rather than have errors pop up all the time about factors we cannot control you can add a list of health checks to ignore in the RVC (Ruby VMware Console).</p>
+<p>First log onto your VMware VCenter Appliance and execute a shell:<br />
+<code>ssh 192.168.0.10<br />
+shell</code></p>
+<p>Then login to RVC with your administrator login for your vCenter:<br />
+<code>rvc administrator@vsphere.local@localhost<br />
+password: *********</code></p>
+<p>Then select your vSAN cluster - in my case TSEW is the datacenter:<br />
+<code>mark vsan localhost/TSEW/Computers/vSAN\ Cluster/</code></p>
+<p>Then you can run the commands to disable the health checks:<br />
+<code>&gt; vsan.health.silent_health_check_configure -a largeping ~vsan<br />
+Successfully update silent health check list for vSAN Cluster<br />
+&gt; vsan.health.silent_health_check_configure -a controllerdiskmode ~vsan<br />
+Successfully update silent health check list for vSAN Cluster<br />
+&gt; vsan.health.silent_health_check_configure -a controllerfirmware ~vsan<br />
+Successfully update silent health check list for vSAN Cluster<br />
+&gt; vsan.health.silent_health_check_configure -a controlleronhcl ~vsan<br />
+Successfully update silent health check list for vSAN Cluster<br />
+&gt; vsan.health.silent_health_check_configure -a controllerreleasesupport ~vsan<br />
+Successfully update silent health check list for vSAN Cluster<br />
+&gt; vsan.health.silent_health_check_configure -a controllerdriver ~vsan<br />
+Successfully update silent health check list for vSAN Cluster</code></p>
+<p>Finally run the following command to get a list of all the health checks:<br />
+<code>&gt; vsan.health.silent_health_check_status</code></p>

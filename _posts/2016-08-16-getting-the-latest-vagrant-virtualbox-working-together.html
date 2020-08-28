@@ -1,0 +1,33 @@
+---
+layout: post
+title: Getting the latest Vagrant & VirtualBox working together
+date: 2016-08-16 15:42:21.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _oembed_d9cf444a14064c364306e8076ef2db5c: "{{unknown}}"
+  _oembed_f729ca3887d874f44718cf2bea16449f: "{{unknown}}"
+  _oembed_93e09f7bc5b9807f126d36d34bc57de3: "{{unknown}}"
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '25845313372'
+  _oembed_1e7ff8197a82c824673835ecb009e2df: "{{unknown}}"
+  _oembed_9dcc15f2a3d70367acad8f076c2ecc2b: "{{unknown}}"
+  _oembed_be8af5acc07ab8d39b8a19fa1022c5f7: "{{unknown}}"
+  _oembed_66a6219c7b6138336f79adb8ed862e19: "{{unknown}}"
+  _oembed_2b374e0b0a803b266b31653a923b08f5: "{{unknown}}"
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2016/08/16/getting-the-latest-vagrant-virtualbox-working-together/"
+---
+<p>Having trouble getting the latest Vagrant and VirtualBox working together because the ssh key is not acceptable to Vagrant?  Well it turns out that the ownership on authorized_keys is not 600 so it fails in operating systems like Centos.  The trick is to modify one of the files to add a chmod 0600 after the authorized_keys file has been updated.  Full information in the link:</p>
+<p>https://github.com/mitchellh/vagrant/issues/7610</p>

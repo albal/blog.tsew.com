@@ -1,0 +1,69 @@
+---
+layout: post
+title: Simple PowerShell to add PortableApps to your Windows 8 or 8.1 Start Menu
+date: 2014-01-03 18:17:58.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- PowerShell
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2014/01/03/simple-powershell-to-add-portableapps-to-your-windows-8-or-8-1-start-menu-2/"
+---
+<p>Copy the below code to your machine and edit the $folder line to match the location of your PortableApps you can check you have the correct folder by doing a dir with it and ensuring all your portable apps come up. </p>
+<p>To undo what the script does then remove the folder “%appdata%\microsoft\windows\Start Menu\Programs\Portable\“ </p>
+<p>No warranty or suchlike – for information only.&nbsp; Publication requires leaving a comment with a reference to each article and source must be provided with all use</p>
+<p>&nbsp;</p>
+<p>Save it to your DropBox to run when you go onto a new machine.&nbsp; Will work best if you always mount your DropBox drive in the same location.&nbsp; You can always adjust the script to search for the Dropbox folder</p>
+<div id="scid:9D7513F9-C04C-4721-824A-2B34F0212519:35556c10-a9f7-443a-85f4-912599fe5306" class="wlWriterEditableSmartContent" style="float:none;margin:0;display:inline;padding:0;">
+<pre style="width:647px;height:629px;background-color:White;overflow:scroll;" />
+<div><span style="color:#000000;"></p>
+<p></span><span style="color:#008000;">#</span><span style="color:#008000;">## </span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## Copyright (C) Al West, 2014, TSEW, UK.</span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">##</span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## Change the line of code below to match the folder where your </span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## portable apps are - if you omit the filter then everything found </span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## will be added.  Not good!</span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## </span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## To delete links remove the following folder </span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">##  (copy and paste into explorer window):</span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">##    %appdata%\microsoft\windows\Start Menu\Programs\Portable\</span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">##</span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## Running this again will only recreate the shortcuts</span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## It will not delete redundant ones. </span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## Also not all files have portable in their name so it doesn't </span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## cover everything.</span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">## </span><span style="color:#008000;"><br />
+</span><span style="color:#000000;"><br />
+</span><span style="color:#800080;">$folder</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">D:\Dropbox\Portable\PortableApps\*Portable.exe</span><span style="color:#800000;">&quot;</span><span style="color:#000000;"> </p>
+<p></span><span style="color:#008000;">#</span><span style="color:#008000;">##</span><span style="color:#008000;"><br />
+#</span><span style="color:#008000;">############################################################# </span><span style="color:#008000;"><br />
+</span><span style="color:#000000;"><br />
+</span><span style="color:#0000FF;">function</span><span style="color:#000000;"> makeSC ( [string]</span><span style="color:#800080;">$portableApp</span><span style="color:#000000;"> )<br />
+{<br />
+ </span><span style="color:#800080;">$appName</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> [io.path]</span><span style="color:#000000;">::</span><span style="color:#000000;">GetFileNameWithoutExtension(</span><span style="color:#800080;">$portableApp</span><span style="color:#000000;">)<br />
+ </span><span style="color:#800080;">$location</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#800080;">$env:APPDATA</span><span style="color:#000000;"> </span><span style="color:#000000;">+</span><span style="color:#000000;"> </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">\Microsoft\Windows\Start Menu\Programs\Portable\</span><span style="color:#800000;">&quot;</span><span style="color:#000000;"><br />
+ </span><span style="color:#800080;">$WshShell</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> New</span><span style="color:#000000;">-</span><span style="color:#000000;">Object </span><span style="color:#000000;">-</span><span style="color:#000000;">ComObject WScript.Shell<br />
+ Write</span><span style="color:#000000;">-</span><span style="color:#000000;">Host </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">Creating:</span><span style="color:#800000;">&quot;</span><span style="color:#000000;"> </span><span style="color:#800080;">$appName</span><span style="color:#000000;"> </span><span style="color:#800000;">&quot;</span><span style="color:#800000;"> &lt;&lt;&gt;&gt; </span><span style="color:#800000;">&quot;</span><span style="color:#000000;">  </span><span style="color:#800080;">$portableApp</span><span style="color:#000000;"><br />
+ Write</span><span style="color:#000000;">-</span><span style="color:#000000;">Host </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">      in:</span><span style="color:#800000;">&quot;</span><span style="color:#000000;"> </span><span style="color:#800080;">$location</span><span style="color:#000000;"><br />
+ </span><span style="color:#800080;">$Shortcut</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#800080;">$WshShell</span><span style="color:#000000;">.CreateShortcut( </span><span style="color:#800080;">$location</span><span style="color:#000000;"> </span><span style="color:#000000;">+</span><span style="color:#000000;"> </span><span style="color:#800080;">$appName</span><span style="color:#000000;"> </span><span style="color:#000000;">+</span><span style="color:#000000;"> </span><span style="color:#800000;">&quot;</span><span style="color:#800000;">.lnk</span><span style="color:#800000;">&quot;</span><span style="color:#000000;">)<br />
+ </span><span style="color:#800080;">$Shortcut</span><span style="color:#000000;">.TargetPath </span><span style="color:#000000;">=</span><span style="color:#000000;"> </span><span style="color:#800080;">$portableApp</span><span style="color:#000000;"><br />
+ </span><span style="color:#800080;">$Shortcut</span><span style="color:#000000;">.Save()<br />
+} </p>
+<p></span><span style="color:#800080;">$files</span><span style="color:#000000;"> </span><span style="color:#000000;">=</span><span style="color:#000000;"> Get</span><span style="color:#000000;">-</span><span style="color:#000000;">ChildItem </span><span style="color:#000000;">-</span><span style="color:#000000;">Path (</span><span style="color:#800080;">$folder</span><span style="color:#000000;">) </span><span style="color:#000000;">-</span><span style="color:#000000;">Recurse </p>
+<p></span><span style="color:#0000FF;">foreach</span><span style="color:#000000;"> (</span><span style="color:#800080;">$file</span><span style="color:#000000;"> </span><span style="color:#0000FF;">in</span><span style="color:#000000;"> </span><span style="color:#800080;">$files</span><span style="color:#000000;">)<br />
+{<br />
+ makeSC (</span><span style="color:#800080;">$file</span><span style="color:#000000;">)<br />
+}<br />
+</span></div>
+<p><!-- Code inserted with Steve Dunn's Windows Live Writer Code Formatter Plugin.  http://dunnhq.com --></div>

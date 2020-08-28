@@ -1,0 +1,24 @@
+---
+layout: post
+title: VirtualBox how to start all VMs headless
+date: 2017-04-20 16:20:29.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '4205193193'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2017/04/20/virtualbox-how-to-start-all-vms-headless/"
+---
+<p>vboxmanage list vms | cut -f 2 -d '"' | xargs -I{} vboxheadless -s "{}"</p>

@@ -1,0 +1,124 @@
+---
+layout: post
+title: Setting up Windows Home Server with Alternative Disk Drivers
+date: 2010-02-09 17:25:50.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Windows Home Server
+tags: []
+meta:
+  _edit_last: '11201131'
+  _oembed_47d231733e54f247453ed0f5fe46526a: "{{unknown}}"
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2010/02/09/setting-up-windows-home-server-with-alternative-disk-drivers/"
+---
+<p>First select to Boot from CD-ROM – if you have a blank hard disk then most systems will automatically boot from CD-ROM if not you will have to tell you computer to boot from a different source by pressing a certain key at boot time to bring up a Boot Menu.&#160; You will need to refer to your motherboard manual , keys such as F10, F2 might work – look carefully at the screen when your PC first switches on for clues as to what key to press.&#160; It is also possible to go into setup and select which source to boot from also.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image23.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb17.png" width="644" height="484" /></a> </p>
+<p>When the CD-ROM boots you get the following screen indicating it’s loading the first stage of the installer into memory</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image24.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb18.png" width="644" height="484" /></a>&#160;</p>
+<p>Next the first stage of the installer starts</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image25.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb19.png" width="644" height="484" /></a> </p>
+<p>Next the installer is locating hardware and drivers to be used</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image26.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb20.png" width="644" height="484" /></a> </p>
+<p>No drivers for the storage controllers have been found – here you are given the opportunity to select additional storage drivers – select “Yes”</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image27.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb21.png" width="644" height="484" /></a> </p>
+<p>Select the driver from the floppy and select open:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image28.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb22.png" width="644" height="484" /></a> </p>
+<p>Go through the setup as normal:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image29.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb23.png" width="644" height="484" /></a> </p>
+<p>Select your language.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image30.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb24.png" width="644" height="484" /></a> </p>
+<p>On the next screen select your disk – don’t load the drivers again, you’ve done this already:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image31.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb25.png" width="644" height="484" /></a> </p>
+<p>Select New Installation if you are doing a totally fresh install – if you are wanting to keep data from a previous install then select Recovery:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image32.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb26.png" width="644" height="484" /></a> </p>
+<p>Accept the license agreement:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image33.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb27.png" width="644" height="484" /></a> </p>
+<p>Enter your product key – if you have the trial just hit next:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image34.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb28.png" width="644" height="484" /></a> </p>
+<p>If you didn’t enter a product key you get a warning that you will only have 30 days to use the product:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image35.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb29.png" width="644" height="484" /></a> </p>
+<p>Give your server a name – be aware people will expect you to replace server or myserver with the server name you have chosen if they refer to an address like <a href="http://server:55000/">http://server:55000/</a> or <a href="//\\server">\\server</a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image36.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb30.png" width="644" height="484" /></a> </p>
+<p>Select the checkbox to “Acknowledge that all the data on these drives will be lost”</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image37.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb31.png" width="644" height="484" /></a> </p>
+<p>Are you really sure? :</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image38.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb32.png" width="644" height="484" /></a> </p>
+<p>Then hit start:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image39.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb33.png" width="644" height="484" /></a> </p>
+<p>Formatting the system volume is the first part of the setup:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image40.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb34.png" width="644" height="484" /></a> </p>
+<p>Then the installation files will be copied:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image41.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb35.png" width="644" height="484" /></a> </p>
+<p>Then it’s time for the first reboot – it will happen automatically:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image42.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb36.png" width="644" height="484" /></a>&#160;</p>
+<p>If you get this screen then you left the floppy in the drive. Take it out and press a key:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image43.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb37.png" width="644" height="360" /></a>,</p>
+<p>Be quick and press F6 – you need to install your disk storage drivers again: </p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image44.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb38.png" width="644" height="360" /></a> </p>
+<p>After a few moments you should get this screen. Press S:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image45.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb39.png" width="644" height="360" /></a> </p>
+<p>Insert your floppy and press Enter:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image46.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb40.png" width="644" height="360" /></a> </p>
+<p>Select your driver by pressing Enter:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image47.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb41.png" width="644" height="360" /></a> </p>
+<p>Now you have installed your driver hit enter to continue:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image48.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb42.png" width="644" height="360" /></a> </p>
+<p>Setup will now continue with the rest of the install:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image49.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb43.png" width="644" height="360" /></a> </p>
+<p>Now the final part of the base OS install process is underway:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image50.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb44.png" width="644" height="356" /></a> </p>
+<p>Finished copying the files:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image51.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb45.png" width="644" height="356" /></a></p>
+<p>Restarting: </p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image52.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb46.png" width="644" height="356" /></a> </p>
+<p>Don’t forget to remove the floppy again:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image53.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb47.png" width="644" height="360" /></a> </p>
+<p>Windows Home Server is based on Windows Server 2003 – so don’t be afraid you have setup the wrong OS:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image54.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb48.png" width="644" height="484" /></a> </p>
+<p>Setup will continue the final stage of installation:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image55.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb49.png" width="644" height="484" /></a>&#160;</p>
+<p>Installing devices:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image56.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb50.png" width="644" height="484" /></a> </p>
+<p>Installing Network:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image57.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb51.png" width="644" height="484" /></a> </p>
+<p>Copying more files:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image58.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb52.png" width="644" height="484" /></a> </p>
+<p>Completing installation:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image59.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb53.png" width="644" height="484" /></a>&#160;</p>
+<p>Installing Start menu items:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image60.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb54.png" width="644" height="484" /></a> </p>
+<p>Registering components:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image61.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb55.png" width="644" height="484" /></a> </p>
+<p>Saving settings:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image62.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb56.png" width="644" height="484" /></a> </p>
+<p>Removing temporary files:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image63.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb57.png" width="644" height="484" /></a> </p>
+<p>And the final reboot of installation – can take a few minutes so let the machine be:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image64.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb58.png" width="644" height="484" /></a> </p>
+<p>Hello Home Server:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image65.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb59.png" width="644" height="484" /></a> </p>
+<p>Starting up:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image66.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb60.png" width="644" height="484" /></a> </p>
+<p>Applying computer settings:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image67.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb61.png" width="644" height="484" /></a> </p>
+<p>Applying personalised settings:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image68.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb62.png" width="644" height="484" /></a> </p>
+<p>Again the installation is being finalised – expect to see this ‘final’ screen a few times more.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image69.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb63.png" width="644" height="484" /></a> </p>
+<p>Windows Home Server will reboot itself automatically as it’s finalising the installation – give it time and soon you’ll have a complete install.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image70.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb64.png" width="644" height="484" /></a> </p>
+<p>It’s normal to see the disk scanning screen after a new install.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image71.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb65.png" width="644" height="484" /></a> #</p>
+<p>Your system might reboot a few more times to install updates and so on but as far as the storage device driver goes you shouldn’t need to interact with the install process again:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/02/image72.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb66.png" width="644" height="484" /></a> </p>
+<p>That’s where I’ll leave it – you should be fine from here on in.</p>

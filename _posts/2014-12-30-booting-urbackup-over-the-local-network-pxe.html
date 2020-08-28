@@ -1,0 +1,34 @@
+---
+layout: post
+title: Booting UrBackup over the local network (PXE)
+date: 2014-12-30 11:36:14.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2014/12/30/booting-urbackup-over-the-local-network-pxe/"
+---
+<p>With an already functioning TFTP server and PXE boot environment for Debian 7 network install with files also being served over http from the same path as the TFTP server it is straightforward to boot <a href="http://www.urbackup.org/" target="_blank">UrBackup</a> over the network.&nbsp; The same method applies to many Linux live cds.</p>
+<h2></h2>
+<h2>Adding to pxelinux.cfg/default</h2>
+<p>Add the following to your default fiile in pxelinux.cfg</p>
+<div id="scid:9D7513F9-C04C-4721-824A-2B34F0212519:be6060d2-2bef-449f-8a50-a9dbafb3da99" class="wlWriterEditableSmartContent" style="float:none;margin:0;display:inline;padding:0;">
+<pre style="width:630px;height:116px;background-color:White;overflow:auto;" />
+<div><span style="color:#0000FF;">LABEL</span><span style="color:#000000;"> URbackup<br />
+    Menu </span><span style="color:#0000FF;">Label</span><span style="color:#000000;"> ^UrBackup<br />
+    kernel vmlinuz<br />
+    </span><span style="color:#0000FF;">append</span><span style="color:#000000;"> initrd</span><span style="color:#000000;">=</span><span style="color:#000000;">initrd</span><span style="color:#000000;">.</span><span style="color:#000000;">img </span><span style="color:#0000FF;">boot</span><span style="color:#000000;">=</span><span style="color:#000000;">live config username</span><span style="color:#000000;">=</span><span style="color:#000000;">urbackup toram fetch</span><span style="color:#000000;">=</span><span style="color:#000000;">http:</span><span style="color:#000000;">//</span><span style="color:#000000;">tftp</span><span style="color:#000000;">/</span><span style="color:#000000;">urbackup</span><span style="color:#000000;">/</span><span style="color:#000000;">filesystem</span><span style="color:#000000;">.</span><span style="color:#000000;">squashfs</span></div>
+<p><!-- Code inserted with Steve Dunn's Windows Live Writer Code Formatter Plugin.  http://dunnhq.com --></div>
+<p>Ensure you change the hostname to the ip or host of your tftp server and that you are serving the squashfs file over http.&nbsp; Note that the initrd and vmlinuz are from the debian network boot sources.</p>

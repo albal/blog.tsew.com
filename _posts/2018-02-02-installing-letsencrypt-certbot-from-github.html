@@ -1,0 +1,35 @@
+---
+layout: post
+title: Installing LetsEncrypt certbot from GitHub
+date: 2018-02-02 23:55:42.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '14319276544'
+  timeline_notification: '1517615743'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/02/02/installing-letsencrypt-certbot-from-github/"
+---
+<p>Sometimes there the delay between a new certbot release from LetsEncrypt and the time it hits the Ubuntu LaunchPad PPA.  However there is not much involved in setting up Ubuntu to use certbot directly from the GitHub source.  I tested the following out on Ubuntu 14.04 LTS and 16.04 LTS and it worked without a hitch:</p>
+<pre>sudo apt-get remove certbot
+sudo add-apt-repository --remove ppa:certbot/certbot
+cd /opt
+sudo git clone https://github.com/certbot/certbot.git
+cd certbot
+sudo git checkout v0.21.1
+sudo ln -s /opt/certbot/certbot-auto /usr/bin/certbot
+certbot renew
+sudo apt-get autoremove</pre>
+<p>To update simply go to the repo and `git checkout` the latest version.</p>

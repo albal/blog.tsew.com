@@ -1,0 +1,29 @@
+---
+layout: post
+title: Using a Private GIT Repo with Buildroot
+date: 2015-06-03 13:02:52.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- General
+tags:
+- buildroot
+- git
+meta:
+  _publicize_job_id: '11294868906'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2015/06/03/using-a-private-git-repo-with-buildroot/"
+---
+<p>Buildroot is pure awesomeness for maintaining the build of a GNU/Linux based operating system.&nbsp; However, during my ventures I’ve had to keep private code private so use a git repo behind ssh.&nbsp; There is a way to achieve this with Buildroot but it is undocumented:</p>
+<blockquote><p>LIBFOO_SITE_METHOD = git<br />LIBFOO_SITE = ssh://git@server.domain.tld/group/repo.git<br />LIBFOO_VERSION = v1.01.a</p>
+</blockquote>
+<p>On the first line we have to set the method to git as the auto detect won’t work on SSH<br />The second line contains the git repo as it would be defined if using git via ssh accept prepended with ssh:// and the the colon that is normally between the end of the FQDN and the location is replaced with a slash.<br />Line 3 can be a tag, branch or commit hash.</p>
+<p>I am not sure if line 2 is correct in all cases but it works for me.</p>

@@ -1,0 +1,28 @@
+---
+layout: post
+title: Getting Subsonic working behind Nginx
+date: 2018-02-09 11:14:00.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '14559397744'
+  timeline_notification: '1518174841'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/02/09/getting-subsonic-working-behind-nginx/"
+---
+<p>The subsonic Web UI uses frames as if you just proxy subsonic with SSL/TLS termination like you would with any other website you will find the pages does not load. You need to add a directive to your configuration:</p>
+<p><code>add_header X-Frame-Options SAMEORIGIN;<br />
+</code><br />
+This should also work with madsonic.</p>

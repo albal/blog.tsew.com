@@ -1,0 +1,108 @@
+---
+layout: post
+title: Review of Time Traveler
+date: 2009-12-10 15:35:24.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Windows Home Server
+tags: []
+meta: {}
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2009/12/10/review-of-time-traveler/"
+excerpt: "What is Time Traveler?\n\nTime Traveler for Windows Home Server when installed
+  allows you to revert to any version of a file stored on your Windows Home Server.
+  For example you might realise that the section of a report you deleted a few revisions
+  ago actually is now needed. Time Traveler will enable you to go through previous
+  versions of the file and you can then copy out the text that is needed. While Time
+  Traveler is installed you can be safe in the knowledge that your files are protected
+  from being overwritten. This is especially useful in server environment where many
+  users may have access to the same files.\n\nWhere can I get it?\n\nTime Traveler
+  can be found at http://www.timetravelerwhs.com/index.html and though not free like
+  some add-ins the amount of protection it offers is very good for the fee of $29.99
+  (Â£19.54). There is a trial version available and once downloaded to the Add-Ins
+  folder of your Software Network Share installation is as straightforward as any
+  other standard Add-In. Note: Power Pack 2 must be installed for Time Server to work
+  â\x80\x93 though by now you should consider upgrading to Power Pack 3.\n\nWalkthrough\n\n\n\n\n\n\n\nOpen
+  the Windows Home Server Console, click on Settings in the top right, select the
+  Add-Ins option and then the Available tab. Click Install on the Time Traveler for
+  Windows Home Server item.\n\n\n\nOnce you click Ok after the installation has completed
+  the Windows Home Server Console will close as normal and should reopen. When the
+  Console comes back up you should notice a new tab item for Time Traveler at the
+  top of the Console. Selecting this will bring up the option to register or continue
+  in Trial Mode.\n\n\n\nFirst time in and you have to go through the setup wizard.
+  If you click Cancel you have to close the Windows Home Server Console and reopen
+  it to get back to this step.\n\n\n\nClick OK to acknowledge completion of the setup
+  of the internal database and initialisation of files used by Time Traveler.\n\n\n\n\n\n\n\n\n\nNow
+  you are ready to select which folders you want to enable to be protected by Time
+  Traveler. \n\n\n\nHere I have selected the Public folder to be enabled for protection
+  and for the purposes of demonstration Iâ\x80\x99ve set the Rollback Creation Interval
+  to 1 minute. On a live system you might want to consider having rollback intervals
+  of a day or 12 hours. Note that the Rollback Interval applies to all folders enabled
+  for Rollback and if you are monitoring folders with many files that change often
+  you could find your server under some load.\n\nIâ\x80\x99ve already created a document
+  in this folder with 10 paragraphs. Iâ\x80\x99ve opened it and replaced all the text
+  with â\x80\x9CItâ\x80\x99s Goneâ\x80\x9D. I can then go back and view the Time Traveler
+  tab and monitor what happens.\n\n\n\n\n\nAs you can see the total rollbacks has
+  increased and the time of the last roll back indicates when my save was made. To
+  get back to my old version of the file you simply right click on share where the
+  file resides and select Rollback\n\n\n\nThis is the tricky part in working out when
+  your file was changed and selecting a time before that. Looking at my share I can
+  see the file save was made at 14:01 so if I rollback to all the files and their
+  state at 14:00 on my Public Share then I should be able to get back to my document
+  with 10 Paragraphs in.\n\nBelow is my document as of 14:02\n\n\n\nAfter selecting
+  Rollback in the Window Home Server Console a dialog appears allowing you to set
+  the time and also if you want to rollback a share, folder within a share of a file
+  anywhere within a share that has Rollback enabled. Iâ\x80\x99ve selected my file
+  to be rolled back to what it was at 14:00.\n\n\n\nHit the Rollback button to recover
+  your file and then browse to the share location provided in the next dialog box.\n\n\n\nTime
+  Traveler organises recovered files according to the share they have been recovered
+  from and the time of the snapshot and their location. So in this case our files
+  can be found at \\\\\\Time Traveler Rollbacks\\Public\\2009-12-09 [14-00-00] \n\n\n\nOne
+  thing to remember is that by default Time Traveler does not enable any user to have
+  read or write access to the Rollbacks folder and you may want to enable this if
+  you want to access files that you rollback from other machines on your network.
+  All in all Time Traveler is a useful addition to you software add-ins especially
+  if you use your network shares for documents shared between users. Itâ\x80\x99s
+  one of those add-ins that is invaluable when something inevitably goes wrong."
+---
+<h5><img style="display:inline;margin-left:0;margin-right:0;" src="{{ site.baseurl }}/assets/esell.jpg" width="94" height="113" /></h5>
+<h5><strong>What is Time Traveler?</strong></h5>
+<p>Time Traveler for Windows Home Server when installed allows you to revert to any version of a file stored on your Windows Home Server.&#160; For example you might realise that the section of a report you deleted a few revisions ago actually is now needed.&#160; Time Traveler will enable you to go through previous versions of the file and you can then copy out the text that is needed.&#160; While Time Traveler is installed you can be safe in the knowledge that your files are protected from being overwritten.&#160; This is especially useful in server environment where many users may have access to the same files.</p>
+<h5><strong>Where can I get it?</strong></h5>
+<p>Time Traveler can be found at <a title="http://www.timetravelerwhs.com/index.html" href="http://www.timetravelerwhs.com/index.html">http://www.timetravelerwhs.com/index.html</a> and though not free like some add-ins the amount of protection it offers is very good for the fee of $29.99 (£19.54).&#160; There is a trial version available and once downloaded to the <strong><em>Add-Ins</em></strong> folder of your <strong><em>Software</em></strong> Network Share installation is as straightforward as any other standard Add-In.&#160; <strong>Note: Power Pack 2 must be installed for Time Server to work</strong> – though by now you should consider upgrading to Power Pack 3.</p>
+<p><strong>Walkthrough</strong></p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb.png" width="998" height="697" /></a> </p></p>
+<p>Open the Windows Home Server Console, click on <strong><em>Settings </em></strong>in the top right, select the<strong> Add-Ins</strong> option and then the Available tab.&#160; Click <strong><em>Install</em></strong> on the <strong><em>Time Traveler for Windows Home Server</em></strong> item.</p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image1.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb1.png" width="998" height="701" /></a> </p>
+<p>Once you click <strong><em>Ok </em></strong>after the installation has completed the Windows Home Server Console will close as normal and should reopen.&#160; When the Console comes back up you should notice a new tab item for Time Traveler at the top of the Console.&#160; Selecting this will bring up the option to register or continue in Trial Mode.</p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image2.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb2.png" width="998" height="699" /></a> </p>
+<p>First time in and you have to go through the setup wizard.&#160; If you click <strong><em>Cancel</em></strong> you have to close the Windows Home Server Console and reopen it to get back to this step.</p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image3.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb3.png" width="998" height="699" /></a> </p>
+<p>Click OK to acknowledge completion of the setup of the internal database and initialisation of files used by Time Traveler.</p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image4.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb4.png" width="1001" height="697" /></a> </p></p></p>
+<p>Now you are ready to select which folders you want to enable to be protected by Time Traveler.&#160; </p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image5.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb5.png" width="1001" height="697" /></a> </p>
+<p>Here I have selected the Public folder to be enabled for protection and for the purposes of demonstration I’ve set the Rollback Creation Interval to 1 minute.&#160; On a live system you might want to consider having rollback intervals of a day or 12 hours.&#160; Note that the Rollback Interval applies to all folders enabled for Rollback and if you are monitoring folders with many files that change often you could find your server under some load.</p>
+<p>I’ve already created a document in this folder with 10 paragraphs.&#160; I’ve opened it and replaced all the text with “It’s Gone”.&#160; I can then go back and view the Time Traveler tab and monitor what happens.</p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image6.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb6.png" width="998" height="697" /></a> </p></p>
+<p>As you can see the total rollbacks has increased and the time of the last roll back indicates when my save was made.&#160; To get back to my old version of the file you simply right click on share where the file resides and select <strong><em>Rollback</em></strong></p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image7.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb7.png" width="996" height="693" /></a> </p>
+<p>This is the tricky part in working out when your file was changed and selecting a time before that.&#160; Looking at my share I can see the file save was made at 14:01 so if I rollback to all the files and their state at 14:00 on my Public Share then I should be able to get back to my document with 10 Paragraphs in.</p>
+<p>Below is my document as of 14:02</p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image8.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb8.png" width="748" height="130" /></a> </p>
+<p>After selecting Rollback in the Window Home Server Console a dialog appears allowing you to set the time and also if you want to rollback a share, folder within a share of a file anywhere within a share that has Rollback enabled.&#160; I’ve selected my file to be rolled back to what it was at 14:00.</p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image9.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb9.png" width="996" height="699" /></a></p>
+<p>Hit the <strong><em>Rollback </em></strong>button to recover your file and then browse to the share location provided in the next dialog box.</p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image10.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb10.png" width="1000" height="699" /></a> </p>
+<p>Time Traveler organises recovered files according to the share they have been recovered from and the time of the snapshot and their location.&#160; So in this case our files can be found at <strong>\\&lt;SERVERNAME&gt;\Time Traveler Rollbacks\Public\2009-12-09 [14-00-00] </strong></p>
+<p><a href="http://albal21.files.wordpress.com/2009/12/image11.png"><img style="display:inline;border-width:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb11.png" width="747" height="273" /></a> </p>
+<p>One thing to remember is that by default Time Traveler does not enable any user to have read or write access to the Rollbacks folder and you may want to enable this if you want to access files that you rollback from other machines on your network.&#160; All in all Time Traveler is a useful addition to you software add-ins especially if you use your network shares for documents shared between users.&#160; It’s one of those add-ins that is invaluable when something inevitably goes wrong.</p>

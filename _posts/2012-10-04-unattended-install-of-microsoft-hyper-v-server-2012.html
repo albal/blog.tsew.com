@@ -1,0 +1,102 @@
+---
+layout: post
+title: Unattended install of Microsoft Hyper-V Server 2012
+date: 2012-10-04 09:54:47.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Hyper-V
+tags: []
+meta:
+  _publicize_pending: '1'
+  _edit_last: '11201131'
+  _oembed_44b65c1b37473b0529b853ea7499155f: "{{unknown}}"
+  _oembed_792532abf3fa9bffb36337f1c08fbdca: "{{unknown}}"
+  _oembed_57e273d80ca103072b9ab96152c94095: "{{unknown}}"
+  _oembed_f69a077f01c3daff5411d8a0b204f76a: "{{unknown}}"
+  _oembed_b34df7e5107fd9f47260714746200a70: "{{unknown}}"
+  _oembed_d459108d4b4966d102bfeafba31d16bd: "{{unknown}}"
+  twitter_cards_summary_img_size: a:6:{i:0;i:764;i:1;i:563;i:2;i:3;i:3;s:24:"width="764"
+    height="563"";s:4:"bits";i:8;s:4:"mime";s:9:"image/png";}
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2012/10/04/unattended-install-of-microsoft-hyper-v-server-2012/"
+---
+<p>Microsoft Hyper-V Server 2012 is a free version of Windows Server 2012 that only supports the Hyper-V role. You can use this to install on bare metal to give you a hyper visor that can support virtualisation. In this article I will be looking at how you prepare an image and configuration file (autounattend.xml) to target a server for a hands off installation.</p>
+<h3>Resources you will need</h3>
+<ul>
+<li>Hyper-V Server 2012 ISO - Click on Free Download in the banner on <a title="http://www.microsoft.com/en-us/server-cloud/hyper-v-server/" href="http://www.microsoft.com/en-us/server-cloud/hyper-v-server/" target="_blank">http://www.microsoft.com/en-us/server-cloud/hyper-v-server/</a></li>
+<li>The Microsoft USB/DVD download tool (you may have to Bing! it if you can't access this region of the store) - <a title="http://emea.microsoftstore.com/UK/en-GB/Service-Centre/Windows-7-USB-DVD-Download-Tool" href="http://emea.microsoftstore.com/UK/en-GB/Service-Centre/Windows-7-USB-DVD-Download-Tool" target="_blank">http://emea.microsoftstore.com/UK/en-GB/Service-Centre/Windows-7-USB-DVD-Download-Tool</a></li>
+<li>The Windows Assessment and Deployment Kit (ADK) (I have Windows 8 so Bing! the version you need) - <a title="http://www.microsoft.com/en-us/download/details.aspx?id=30652" href="http://www.microsoft.com/en-us/download/details.aspx?id=30652" target="_blank">http://www.microsoft.com/en-us/download/details.aspx?id=30652</a></li>
+</ul>
+<p>Download the ISO, install the DVD tool but when you come to install the ADK only install the Deployment Tools:</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/adk1.png"><img style="display:inline;border-width:0;" title="adk1" alt="adk1" src="{{ site.baseurl }}/assets/adk1_thumb.png" width="764" height="563" border="0" /></a></p>
+<p>You will need to run the Windows System Image Manager:</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim1.png"><img style="display:inline;border-width:0;" title="wsim1" alt="wsim1" src="{{ site.baseurl }}/assets/wsim1_thumb.png" width="197" height="67" border="0" /></a></p>
+<p>First mount the ISO on a local drive or open it in another program to extract the install.wim file from the sources folder.  Save this file to your local hard disk.  From the File Menu select New Answer File… then choose Yes to Open a new Windows Image:</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim2.png"><img style="display:inline;border-width:0;" title="wsim2" alt="wsim2" src="{{ site.baseurl }}/assets/wsim2_thumb.png" width="487" height="176" border="0" /></a></p>
+<p>Select the Windows install.wim Image that you copied from the Sources folder earlier:</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim3.png"><img style="display:inline;border-width:0;" title="wsim3" alt="wsim3" src="{{ site.baseurl }}/assets/wsim3_thumb.png" width="575" height="428" border="0" /></a></p>
+<p>Then select yes to create the catalogue file.  This will take a few minutes.  At this point you could use the USB/DVD download tool to create your bootable USB drive. A 2GB USB Drive will do fine for this.</p>
+<p>When the creation of the catalogue file has completed you will need to add a number of configuration options from the Windows Image section in the bottom left of the Windows System Image Manager window to the Answer File.  You do this by opening the Components Tree and right-clicking on a Component with the mouse and selecting the appropriate phase to add it to.  You will then see the Answer File populate with the Configuration Option that you can edit later.  I will details the Configuration Options you need to add to your answer file to enable an unattended install of Windows Hyper-V Server 2012.</p>
+<p>Add the following to 1 windowsPE:</p>
+<ul>
+<li>amd64_Microsoft-Windows-International-Core-WinPE</li>
+<li>amd64_Microsoft-Windows-Setup</li>
+</ul>
+<p>Add the following to 4 specialize:</p>
+<ul>
+<li>amd64_Microsoft-Windows-Shell-Setup</li>
+<li>amd64_Microsoft-Windows-TerminalServices-LocalSessionManager</li>
+<li>amd64_Microsoft-Windows-TerminalServices-RDP-WinStationExtensions</li>
+<li>amd64_Microsoft-Windows-UnattendedJoin</li>
+</ul>
+<p>Add the following to 7 oobe System:</p>
+<ul>
+<li>amd64_Microsoft-Windows-Shell-Setup</li>
+</ul>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim4.png"><img style="display:inline;border-width:0;" title="wsim4" alt="wsim4" src="{{ site.baseurl }}/assets/wsim4_thumb.png" width="497" height="593" border="0" /></a></p>
+<p>Remove any items from the tree that you may have that are not shown above.  They will not be needed.</p>
+<p>Go back to the top of the Tree and Select amd64_Microsoft-Windows-International-Core-WinPE.  For Input Local, SystemLocale, UILanguage, UILanguageFallback and UserLocale enter en-US</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim5.png"><img style="display:inline;border-width:0;" title="wsim5" alt="wsim5" src="{{ site.baseurl }}/assets/wsim5_thumb.png" width="507" height="215" border="0" /></a></p>
+<p>Select SetupUILanguage and set UI Language to en-US and WillShowUI to OnError</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim10.png"><img style="display:inline;border-width:0;" title="wsim10" alt="wsim10" src="{{ site.baseurl }}/assets/wsim10_thumb.png" width="510" height="148" border="0" /></a></p>
+<p>Select amd64_Microsoft-Windows-Setup, set EnableFirewall to False and EnableNetwork to True</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim6.png"><img style="display:inline;border-width:0;" title="wsim6" alt="wsim6" src="{{ site.baseurl }}/assets/wsim6_thumb.png" width="509" height="200" border="0" /></a></p>
+<p>Then select DiskConfiguration right click and select Insert New Disk. Set the DiskID to 0 and set WillWipeDisk to True</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim11.png"><img style="display:inline;border-width:0;" title="wsim11" alt="wsim11" src="{{ site.baseurl }}/assets/wsim11_thumb.png" width="510" height="178" border="0" /></a></p>
+<p>Right click on CreatePartitions and select Insert New CreatePartition on this set Order to 1, Size to 100 and Type to Primary</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim12.png"><img style="display:inline;border-width:0;" title="wsim12" alt="wsim12" src="{{ site.baseurl }}/assets/wsim12_thumb.png" width="511" height="209" border="0" /></a></p>
+<p>Do the same again but set the Extend to true, Order to 2 and Type to Primary</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim13.png"><img style="display:inline;border-width:0;" title="wsim13" alt="wsim13" src="{{ site.baseurl }}/assets/wsim13_thumb.png" width="512" height="210" border="0" /></a></p>
+<p>Move down to ModifyPartitions right click and select Insert New ModifyPartition, set Active to True, Format to NTFS, Label to Boot, Order to 1 and PartitionID to 1</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim14.png"><img style="display:inline;border-width:0;" title="wsim14" alt="wsim14" src="{{ site.baseurl }}/assets/wsim14_thumb.png" width="510" height="273" border="0" /></a></p>
+<p>Do the same again but don’t set Active,set Label to System, Order to 2 and PartitionID to 2</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim15.png"><img style="display:inline;border-width:0;" title="wsim15" alt="wsim15" src="{{ site.baseurl }}/assets/wsim15_thumb.png" width="511" height="273" border="0" /></a></p>
+<p>Select Image install right click and select Insert New OSImage. Set InstallToAvailablePartition to False and WillShowUI to OnError.  Select InstallFrom, right click and select Insert New MetaData.  Set the Key to /IMAGE/NAME and set Value to Hyper-V Server 2012 SERVERHYPERCORE. Remove Credentials</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim16.png"><img style="display:inline;border-width:0;" title="wsim16" alt="wsim16" src="{{ site.baseurl }}/assets/wsim16_thumb.png" width="509" height="180" border="0" /></a></p>
+<p>Select InstallTo and set DiskID to 0 and PartitionID to 2</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim17.png"><img style="display:inline;border-width:0;" title="wsim17" alt="wsim17" src="{{ site.baseurl }}/assets/wsim17_thumb.png" width="510" height="147" border="0" /></a></p>
+<p>Select UserData and set AcceptEula to True, FullName to User and Organization to Company</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim18.png"><img style="display:inline;border-width:0;" title="wsim18" alt="wsim18" src="{{ site.baseurl }}/assets/wsim18_thumb.png" width="339" height="166" border="0" /></a></p>
+<p>Select amd64_Microsoft-Windows-Shell-Setup, set ComputerName to HYPER-V-01, set RegisteredOwner to User and set TimeZone to UTC</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim7.png"><img style="display:inline;border-width:0;" title="wsim7" alt="wsim7" src="{{ site.baseurl }}/assets/wsim7_thumb.png" width="510" height="293" border="0" /></a></p>
+<p>Select amd64_Microsoft-Windows-TerminalServices-LocalSessionManager and set fDenyTSConnections to False</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim8.png"><img style="display:inline;border-width:0;" title="wsim8" alt="wsim8" src="{{ site.baseurl }}/assets/wsim8_thumb.png" width="509" height="141" border="0" /></a></p>
+<p>Select amd64_Microsoft-Windows-TerminalServices-RDP-WinStationExtensions, set SecurityLayer to 1 and UserAuthentication to 0</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim9.png"><img style="display:inline;border-width:0;" title="wsim9" alt="wsim9" src="{{ site.baseurl }}/assets/wsim9_thumb.png" width="508" height="149" border="0" /></a></p>
+<p>Select amd64_Microsoft-Windows-UnattendedJoin and then Identification, in this case we are setting to join a Workgroup so set JoinWorkgroup to WORKGROUP</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim19.png"><img style="display:inline;border-width:0;" title="wsim19" alt="wsim19" src="{{ site.baseurl }}/assets/wsim19_thumb.png" width="338" height="242" border="0" /></a></p>
+<p>Navigate to amd64_Microsoft-Windows-Shell-Setup and set RegisteredOrganization to Company, RegisteredOwner to User and TimeZone to UTC</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim20.png"><img style="display:inline;border-width:0;" title="wsim20" alt="wsim20" src="{{ site.baseurl }}/assets/wsim20_thumb.png" width="339" height="225" border="0" /></a></p>
+<p>Select AdministratorPassword and for Value type in the password you want to use, in clear text. Later WSIM will encrypt the password.  Don’t forget it.</p>
+<p><a href="http://albal21.files.wordpress.com/2012/10/wsim21.png"><img style="display:inline;border-width:0;" title="wsim21" alt="wsim21" src="{{ site.baseurl }}/assets/wsim21_thumb.png" width="338" height="151" border="0" /></a></p>
+<p>From the Tools menu select Validate Answer File and in the message windows verify that No warnings or errors are shown.  From the File menu select Save As… and use the filename autounattend.xml to save the file to your local disk.  If you are going to boot the system from USB and you are confident that it will work then you can copy the XML file to your USB stick once you have prepared the USB stick using the Microsoft USB/DVD Download tool.</p>
+<p>In my next article I will show you how to verify your unattended install in Hyper-V.  This is very useful for proving your answer file where it will be used on a headless system.</p>

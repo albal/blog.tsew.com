@@ -1,0 +1,31 @@
+---
+layout: post
+title: Setting up vim for Puppet
+date: 2017-03-27 09:28:12.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '3318331787'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2017/03/27/setting-up-vim-for-puppet/"
+---
+<pre><code>mkdir -p ~/.vim/autoload ~/.vim/bundle &amp;&amp; \
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim</code></pre>
+<pre><code>git clone git://github.com/rodjek/vim-puppet.git ~/.vim/bundle/puppet
+</code></pre>
+<pre><code># ~/.vimrc
+execute pathogen#infect()
+syntax on
+filetype plugin indent on</code></pre>

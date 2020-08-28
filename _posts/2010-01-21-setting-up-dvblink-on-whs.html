@@ -1,0 +1,148 @@
+---
+layout: post
+title: Setting up DVBLink on WHS
+date: 2010-01-21 23:55:10.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Windows Home Server
+tags: []
+meta:
+  _edit_last: '11201131'
+  _oembed_1cd1dc537af14cd90197c240c6f1607f: "{{unknown}}"
+  _oembed_08732f3867914c195d4f46447c099563: "{{unknown}}"
+  _oembed_f885c101bd60ffaba1252a27f05bb893: "{{unknown}}"
+  _oembed_0cf3b6a6c342483abb3f07fdfe9bf9c0: "{{unknown}}"
+  _oembed_f6cf5b048f6d1a739dd8b1ca17851e58: "{{unknown}}"
+  _oembed_6847e13c9d3983b14d8a94604ed16acd: "{{unknown}}"
+  _oembed_e98505daa2c1fa56cbb293b8d8745c6d: "{{unknown}}"
+  _oembed_e6e1e82955e0cc0687b03607117e3385: "{{unknown}}"
+  _oembed_6bf9407dfcfcf307e7beda509ccfc5f1: "{{unknown}}"
+  _oembed_ddbf9c27f9e825ce57aa917de37e0b85: "{{unknown}}"
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2010/01/21/setting-up-dvblink-on-whs/"
+---
+<p>This is an overview of how to setup DVBLink on Windows Home Server allowing one to serve live TV to other devices on your network including UPNP Players, Windows Media Centre and Windows Media Player.</p>
+<h2>Setting up your hardware</h2>
+<p>Open device manager and see if your hardware has been detected.  In most cases you should see your hardware present but no drivers may be found for it.  You’ll have to locate the drivers either on CD with the tuner device or download them from the manufacturer's website.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image3.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image3_thumb.png" border="0" alt="image" width="306" height="306" /></a></p>
+<p>I previously downloaded the drivers for my TechnoTrend USB 3600 from their site and pointed the installer to the files on my USB stick.  Simply follow the hardware installation wizard</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image6.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image6_thumb.png" border="0" alt="image" width="506" height="388" /></a> </p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image91.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image91_thumb.png" border="0" alt="image" width="313" height="373" /></a></p>
+<p>Now that we have hardware with working drivers in Device Manager we are ready to start with the Installation of DVBLink.</p>
+<h2>DVBLink – Installation</h2>
+<p>First download the two archives we need for the Installation on the Server and Client Computers.</p>
+<p>Download DVBLink TVSource v2.0.0003 here:<br />
+<a title="http://www.dvblogic.com/download/DVBLink2/DVBLink2TVSource.zip" href="http://www.dvblogic.com/download/DVBLink2/DVBLink2TVSource.zip" target="_blank">http://www.dvblogic.com/download/DVBLink2/DVBLink2TVSource.zip</a></p>
+<p>Download DVB Link Network Pack here:<br />
+<a title="http://www.dvblogic.com/download/DVBLink2/DVBLinkNetPack.zip" href="http://www.dvblogic.com/download/DVBLink2/DVBLinkNetPack.zip" target="_blank">http://www.dvblogic.com/download/DVBLink2/DVBLinkNetPack.zip</a></p>
+<p>More information can be found in the following forum post:<br />
+ <a title="http://dvblogic.com/phpBB3/viewtopic.php?f=43&amp;t=8923" href="http://dvblogic.com/phpBB3/viewtopic.php?f=43&amp;t=8923">http://dvblogic.com/phpBB3/viewtopic.php?f=43&amp;t=8923</a></p>
+<p>Note: that this software is Beta but I didn’t run into any problems on Windows Home Server or Windows 7 Ultimate</p>
+<p>From the DVBLink2TVSource.zip run DVBLinkServer.msi</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image121.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image121_thumb.png" border="0" alt="image" width="504" height="387" /></a></p>
+<p>Follow the usual installation sequence using the defaults throughout:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image151.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image151_thumb.png" border="0" alt="image" width="502" height="387" /></a></p>
+<p>The installation requires the use of unsigned drivers that should present a warning and confirmation dialog.  Select Continue Anyway for all the dialog boxes that appear warning about the DVBLink Capture and Tuner drivers:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image181.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image181_thumb.png" border="0" alt="image" width="399" height="325" /></a></p>
+<p>Once DVBLink Server has been installed you will have to reboot before you can install TVSource.</p>
+<p> <a href="http://albal21.files.wordpress.com/2010/01/image241.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image241_thumb.png" border="0" alt="image" width="370" height="169" /></a></p>
+<p>Back on the server install the DVBLinkNeworkPack.msi from the DVBLinkNetPack archive:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image61.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image61_thumb.png" border="0" alt="image" width="502" height="387" /></a></p>
+<p>Again go through the installation steps accepting the defaults:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image911.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image91_thumb1.png" border="0" alt="image" width="502" height="389" /></a></p>
+<p>The final piece of software to install on Windows Home Server is DVBLinkTVSource.msi which is found in the DVBLinkTVSource archive.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image43.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image43_thumb.png" border="0" alt="image" width="502" height="389" /></a></p>
+<p>Again accept the defaults and the installation should be finished.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image46.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image46_thumb.png" border="0" alt="image" width="502" height="389" /></a></p>
+<h2>DVBLink – Configuration</h2>
+<p>From the All Programs in the Start Menu find the DVBLink programs group and open <strong>DVBLink Server Configuration</strong>.</p>
+<p>Select the source:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image49.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image49_thumb.png" border="0" alt="image" width="593" height="484" /></a></p>
+<p>Hit the green arrow button to add it to the list of available sources:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image52.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image52_thumb.png" border="0" alt="image" width="595" height="484" /></a></p>
+<p>Give it a name and click <strong>OK</strong>:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image55.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image55_thumb.png" border="0" alt="image" width="594" height="484" /></a></p>
+<p>Click on the ellipses for the TVSource to show the Configuration Window for the Tuner:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image58.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image58_thumb.png" border="0" alt="image" width="592" height="484" /></a></p>
+<p>Select the <strong>Inactive</strong> checkbox and then browse to <strong>Headends</strong> to select which satellite(s) are on this source:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image64.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image64_thumb.png" border="0" alt="image" width="591" height="484" /></a></p>
+<p>Next go to <strong>Scan</strong> tab and select the <strong>Scan</strong> button to start the scan:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image73.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image73_thumb.png" border="0" alt="image" width="593" height="484" /></a></p>
+<p>Scanning can take a while and it appears to run in reverse order of what is in the Transponder list on the left of the window.  Though it does give you an idea of when it is near completion.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image97.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image97_thumb.png" border="0" alt="image" width="591" height="484" /></a></p>
+<p>When the scan has completed click the <strong>OK</strong> button to save the channels found.  Next go to <strong>Server Configuration</strong> lower tab and add the channels from the source that you want to be able to view under<strong> Channel Selection:</strong></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image100.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image100_thumb.png" border="0" alt="image" width="593" height="484" /></a></p>
+<p>Here you simply select the channels you want from the left hand list and add them one at a time to the served channels list on the right hand side.  It would have been nice to be able to select multiple channels but as it’s a one time operation it’s bearable.  <strong>Note</strong>: unless you have a card reader and subscription you won’t be able to tune to encrypted channels (marked with a key).</p>
+<p>Once you have added all the channels you wish to have, select the <strong>Channel Numbers</strong> tab to assign the channels numbers that you want to use for each channel selected previously:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image103.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image103_thumb.png" border="0" alt="image" width="594" height="484" /></a></p>
+<p>Select <strong>OK </strong>and you are done with the setup on the server.</p>
+<h2>DVBLink Client - Setup</h2>
+<p>On the client computer install the DVBLinkNetworkClient.msi found in the DVBLinkNetPack archive.  As per usual accept the default settings:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image_thumb.png" border="0" alt="image" width="618" height="484" /></a></p>
+<p>Again you will be prompted to confirm that you want to install the drivers that are required for the installation:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image31.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image31_thumb.png" border="0" alt="image" width="455" height="242" /></a></p>
+<p>When completed you need to restart the client computer.</p>
+<h2>DVBLink Client - Configuration</h2>
+<p>In All Programs (Program Files) you should find a new group called DVBLink.  Select the DVBLink Client Configuration item</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image1211.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image121_thumb1.png" border="0" alt="image" width="415" height="312" /></a></p>
+<p>The first time you run the tool you will be prompted to enter settings:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image1.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image_thumb1.png" border="0" alt="image" width="446" height="150" /></a></p>
+<p>Point the client to your server – leave the port settings as is – just change the address to the name of your Windows Home Server i.e. HPSERVER</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image1511.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image151_thumb1.png" border="0" alt="image" width="310" height="247" /></a></p>
+<p>Open network connections and verify you have the DVBLink Server present:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image22.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image22_thumb.png" border="0" alt="image" width="441" height="484" /></a></p>
+<h2>Checking DVBLink Server with Windows Media Player</h2>
+<p>Open up Windows Media Player and under<strong> Other Libraries</strong> you should see an entry for <strong>DVBLink TV Server</strong> within your Windows Home Server:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image2.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image_thumb2.png" border="0" alt="image" width="522" height="484" /></a></p>
+<p><strong>Note:</strong> that the channels are listed under<strong> Recorded TV</strong>.  Double click on the channel of interest and then when the window pops up select the Play button:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image4.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image_thumb3.png" border="0" alt="image" width="394" height="293" /></a></p>
+<h2>Setting Up Windows Media Centre 7</h2>
+<p>I must say at this point I’m a stranger to Windows Media Centre so if I’ve missed something or you have additional comments please feel free to add what you think is an improvement on this procedure.  This assumes you’ve never setup Windows Media Centre before on Windows 7.</p>
+<p>Click <strong>Continue</strong> to start the setup:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image41.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image41_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p>I found the Express Setup worked fine in this case:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image45.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image45_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p>The next screenshots are of setting up Windows Media Centre with DVBLink Source/Server.  The dialog boxes are self explanatory:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image42.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image4_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image71.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image71_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image10.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image10_thumb.png" border="0" alt="image" width="644" height="385" /></a> </p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image13.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image13_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image161.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image161_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image191.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image191_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image28.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image28_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image3111.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image3111_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image34.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image34_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image371.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image371_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image40.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image40_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image76.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image76_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image79.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image79_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image82.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image82_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image88.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image88_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image9111.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image911_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image94.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image94_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p>Leave Windows Media Centre open on Live TV (not sure if this is required or not – but that’s the way I did it) and if all is well then after a few minutes DVBLink should detect that Windows Media Centre has been setup to use the network tuners and the following screen should be shown:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image11.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image11_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p>Select Yes to start the configuration.  One weakness with the DVBLink is there doesn’t seem a way to manually start this procedure other than restarting Windows Media Centre.</p>
+<p> <a href="http://albal21.files.wordpress.com/2010/01/image5.png"><img style="display:inline;border-width:0;" title="image" src="{{ site.baseurl }}/assets/image_thumb4.png" border="0" alt="image" width="244" height="68" /></a></p>
+<p>A list of channels available on the  server should be shown:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image101.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image101_thumb.png" border="0" alt="image" width="641" height="484" /></a></p>
+<p>Select sorting by channel number.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image131.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image131_thumb.png" border="0" alt="image" width="641" height="484" /></a></p>
+<p>Select matching by channel name.</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image16.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image16_thumb.png" border="0" alt="image" width="641" height="484" /></a></p>
+<p>and then hit <strong>Finish.</strong></p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image19.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image19_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p>Now you can go to live TV and watch TV shows on your computer:</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image25.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image25_thumb.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p>After all the hard work you deserve to relax in front of the box!</p>
+<p><a href="http://albal21.files.wordpress.com/2010/01/image221.png"><img style="display:inline;border:0;" title="image" src="{{ site.baseurl }}/assets/image22_thumb1.png" border="0" alt="image" width="644" height="385" /></a></p>
+<p>One thing to bear in mind is that if you are on a weak wireless network connection it might show in the form of artefacts or stuttering when playing back.  I was using Gigabit Ethernet and didn’t come across such problems.  If you do have problems there are plenty of resources on the net for troubleshooting and increasing wireless network performance in general.</p>

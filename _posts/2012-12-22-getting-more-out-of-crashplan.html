@@ -1,0 +1,34 @@
+---
+layout: post
+title: Getting more out of CrashPlan
+date: 2012-12-22 20:57:45.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _edit_last: '11201131'
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2012/12/22/getting-more-out-of-crashplan/"
+---
+<p><img alt="Crashplan_logo" src="{{ site.baseurl }}/assets/crashplan_logo.png" width="185" height="97" border="0" />CrashPlan is brilliant. Don't let me tell you though. <a title="Bing! it and decide." href="http://www.bing.com/search?q=crashplan" target="_blank">Bing! it and decide</a>. Anyway you will find it you have to back up a large number of files, say in the region of 200,000 then you will need some more memory assigned to the Java Virtual Machine that runs CrashPlan. I am talking about windows here and this is the info I got back from support. You may find this useful if after a while CrashPlan seems to bomb out or keep on preserving with something and not really getting anywhere, i.e. constant file analysis or so on.</p>
+<p><strong>Here is the info</strong>:</p>
+<p>Running Notepad or any other text-editor as an Admin, edit the CrashPlan engine's CrashPlanService.ini file to allow it to use more java memory:</p>
+<ol>
+<li>Stop the backup engine: http://support.crashplan.com/doku.php/how_to/stop_and_start_engine</li>
+<li>Locate the Notepad program, right-click and Launch as Administrator</li>
+<li>Go to File &gt; Open, and navigate to C:\Program Files\CrashPlan\CrashPlanService.ini</li>
+<li>Find the following line in the file: -Xmx512m</li>
+<li>Edit to something larger such as 640, 768, 896, or 1024. E.g.: -Xmx1024m</li>
+<li>Start the backup engine.</li>
+</ol>
+<p>This sets the maximum amount of memory that CrashPlan can use. CrashPlan will not use that much until it needs it. I would recommend starting out setting it to 768, and go higher only if you continue experiencing problems. You can set it as high as 2048 on 32-bit systems, or even higher on 64-bit systems.</p>

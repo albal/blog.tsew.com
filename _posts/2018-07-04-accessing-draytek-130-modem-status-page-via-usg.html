@@ -1,0 +1,36 @@
+---
+layout: post
+title: Accessing DrayTek 130 Modem Status Page via USG
+date: 2018-07-04 13:30:13.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '19658194612'
+  timeline_notification: '1530711013'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/07/04/accessing-draytek-130-modem-status-page-via-usg/"
+---
+<p>This is more of a note for me but may be useful for some. How to connect to the DrayTek status page from your internal network.</p>
+<p>First bring up the USG UI and enter in a new static route:</p>
+<p><img class="alignnone size-full wp-image-1144" src="{{ site.baseurl }}/assets/usgnewroute.png" alt="USGnewRoute" width="524" height="178" /></p>
+<p>Then login to your USG via SSH and run:<br />
+<code>configure<br />
+set interfaces ethernet eth3 address 192.168.2.100/24<br />
+commit</code></p>
+<p>This sets an IP address for the port that the modem is connected to.</p>
+<p>Then from the USG, login to the draytek - telnet 192.168.2.1 and run:<br />
+<code>ip route add 192.168.0.0 255.255.255.0 192.168.2.2 3 static</code></p>
+<p>You then should be able to browse to https://192.168.2.1/ and login to your DrayTek 130 Modem:<br />
+<img class="alignnone size-full wp-image-1145" src="{{ site.baseurl }}/assets/130-login.png" alt="130-Login" width="540" height="468" /></p>

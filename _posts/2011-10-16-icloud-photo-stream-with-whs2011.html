@@ -1,0 +1,36 @@
+---
+layout: post
+title: iCloud Photo Stream with WHS2011
+date: 2011-10-16 18:34:59.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Windows Home Server
+tags:
+- Apple
+- iCloud
+meta:
+  tagazine-media: a:7:{s:7:"primary";s:59:"http://albal21.files.wordpress.com/2011/10/image_thumb1.png";s:6:"images";a:6:{s:52:"http://albal21.files.wordpress.com/2011/10/image.png";a:6:{s:8:"file_url";s:52:"http://albal21.files.wordpress.com/2011/10/image.png";s:5:"width";s:3:"542";s:6:"height";s:3:"346";s:4:"type";s:5:"image";s:4:"area";s:6:"187532";s:9:"file_path";s:0:"";}s:58:"http://albal21.files.wordpress.com/2011/10/image_thumb.png";a:6:{s:8:"file_url";s:58:"http://albal21.files.wordpress.com/2011/10/image_thumb.png";s:5:"width";s:3:"546";s:6:"height";s:3:"350";s:4:"type";s:5:"image";s:4:"area";s:6:"191100";s:9:"file_path";s:0:"";}s:53:"http://albal21.files.wordpress.com/2011/10/image1.png";a:6:{s:8:"file_url";s:53:"http://albal21.files.wordpress.com/2011/10/image1.png";s:5:"width";s:3:"644";s:6:"height";s:3:"551";s:4:"type";s:5:"image";s:4:"area";s:6:"354844";s:9:"file_path";s:0:"";}s:59:"http://albal21.files.wordpress.com/2011/10/image_thumb1.png";a:6:{s:8:"file_url";s:59:"http://albal21.files.wordpress.com/2011/10/image_thumb1.png";s:5:"width";s:3:"648";s:6:"height";s:3:"555";s:4:"type";s:5:"image";s:4:"area";s:6:"359640";s:9:"file_path";s:0:"";}s:53:"http://albal21.files.wordpress.com/2011/10/image2.png";a:6:{s:8:"file_url";s:53:"http://albal21.files.wordpress.com/2011/10/image2.png";s:5:"width";s:3:"501";s:6:"height";s:3:"251";s:4:"type";s:5:"image";s:4:"area";s:6:"125751";s:9:"file_path";s:0:"";}s:59:"http://albal21.files.wordpress.com/2011/10/image_thumb2.png";a:6:{s:8:"file_url";s:59:"http://albal21.files.wordpress.com/2011/10/image_thumb2.png";s:5:"width";s:3:"505";s:6:"height";s:3:"255";s:4:"type";s:5:"image";s:4:"area";s:6:"128775";s:9:"file_path";s:0:"";}}s:6:"videos";a:0:{}s:11:"image_count";s:1:"6";s:6:"author";s:8:"11201131";s:7:"blog_id";s:8:"10895979";s:9:"mod_stamp";s:19:"2011-10-16
+    19:12:58";}
+  _oembed_a7f0e06f23b165f0f47f5400ac5c135c: "{{unknown}}"
+  _oembed_aef250bbd1670086c9d7539555df3855: "{{unknown}}"
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2011/10/16/icloud-photo-stream-with-whs2011/"
+---
+<p>This is just a quick post to say that iCloud works fine on Windows Home Server 2011. Though Apple don’t list Windows Server 2008 R2 or WHS2011 as a compatible product I’ve installed iCloud without any issues on my Windows Home Server and it’s been happily downloading photos sent by an iPhone 4 over the past week.</p>
+<p>Simply logon to your Windows Home Server via RDP and go to <a href="http://support.apple.com/kb/DL1455">http://support.apple.com/kb/DL1455</a> and download the iCloud Control Panel for Windows.&#160; Install the application as normal but due to the fact it registers a new component with the Windows control panel you will need to reboot before you can access the system control panel.&#160; Don’t install iCloud unless you can reboot right away or live without the control panel until your server is rebooted.</p>
+<p>After you have rebooted you can go to the Windows control panel and find the new iCloud control panel applet:</p>
+<p><a href="http://albal21.files.wordpress.com/2011/10/image.png"><img style="background-image:none;border-bottom:0;border-left:0;padding-left:0;padding-right:0;display:inline;border-top:0;border-right:0;padding-top:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb.png" width="546" height="350" /></a></p>
+<p>You will be prompted to enter in your Apple ID and password and if you don’t have an iCloud account there will be some words to agree to as is the norm these days.&#160; Once you have completed the sign in/up process you’ll see the main control panel.&#160; From here I only selected to enable the Photo Stream option.&#160; I don’t have Outlook installed nor do I want to sync my Bookmarks with Internet Explorer:</p>
+<p><a href="http://albal21.files.wordpress.com/2011/10/image1.png"><img style="background-image:none;border-bottom:0;border-left:0;padding-left:0;padding-right:0;display:inline;border-top:0;border-right:0;padding-top:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb1.png" width="648" height="555" /></a>&#160; </p>
+<p>Select the “Options…” button and then change the Download Folder to a Shared Folder on your Windows Home Server.&#160; I decided to make a new sub-folder in my Pictures share and left the Upload folder at default as I don’t plan to upload photos from the server to iCloud.&#160; Do note that if you set this folder to a location where you will save photos on your network then you will potentially fill up your iCloud quota quite quickly:</p>
+<p><a href="http://albal21.files.wordpress.com/2011/10/image2.png"><img style="background-image:none;border-bottom:0;border-left:0;padding-left:0;padding-right:0;display:inline;border-top:0;border-right:0;padding-top:0;" title="image" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb2.png" width="505" height="255" /></a></p>
+<p>That’s it! A very straight-forward way to sync all your photos from mobile Apple devices to your Windows Home Server.&#160; In testing we found the latency from taking a photo on the iPhone to be able to retrieve it from the remote access website to be well under a minute. </p>

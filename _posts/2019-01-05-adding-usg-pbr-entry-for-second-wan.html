@@ -1,0 +1,36 @@
+---
+layout: post
+title: Adding USG PBR Entry for Second WAN
+date: 2019-01-05 17:50:27.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '26206957378'
+  timeline_notification: '1546710627'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2019/01/05/adding-usg-pbr-entry-for-second-wan/"
+---
+<p>The following commands run on the USG will use the pppoe1 WAN for the two source addresses specified.</p>
+<pre>configure
+set firewall modify LOAD_BALANCE rule 2500 action modify
+set firewall modify LOAD_BALANCE rule 2500 modify table 5
+set firewall modify LOAD_BALANCE rule 2500 source address 192.168.0.102
+set firewall modify LOAD_BALANCE rule 2500 protocol all
+set firewall modify LOAD_BALANCE rule 2501 action modify
+set firewall modify LOAD_BALANCE rule 2501 modify table 5
+set firewall modify LOAD_BALANCE rule 2501 source address 192.168.0.115
+set firewall modify LOAD_BALANCE rule 2501 protocol all
+set protocols static table 5 interface-route 0.0.0.0/0 next-hop-interface pppoe1
+commit;save;exit</pre>

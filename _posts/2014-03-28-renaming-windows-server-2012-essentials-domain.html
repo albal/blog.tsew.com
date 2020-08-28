@@ -1,0 +1,44 @@
+---
+layout: post
+title: Renaming Windows Server 2012 Essentials Domain
+date: 2014-03-28 13:50:50.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Windows Home Server
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2014/03/28/renaming-windows-server-2012-essentials-domain/"
+---
+<p>Renaming a domain can break things and generally is unsupported.&nbsp; One reason you may wish to do this is to keep an old domain server around but want to reuse the NetBIOS name when installing a new domain.&nbsp; My requirements were for experimentation and should not be used in production.&nbsp; Proceed at your own risk and it’s possible you will stop functions that rely on AD, user, certificate and computer authentication from working.&nbsp; If you are just trying to make room then all may be well.</p>
+<p>1.&nbsp; Check you are working with the right domain controller (in this scenario we only consider this is one)</p>
+<p>2. Open <strong>DNS Manager</strong> and add a <strong>New Zone</strong> Under <strong>Forward Lookup Zone</strong>.&nbsp; Select <strong>Primary</strong> and replicate <strong>To all DNS servers running on domain controllers in this domain</strong>.&nbsp; Enter the new domain name.&nbsp; Then Select <strong>Dynamic Update, Click Allow only secure dynamic updates (recommended for Active Directory)</strong> and finish the wizard.&nbsp; You should now see the new Domain name is listed in DNS Manager.</p>
+<p>3. Open a Command Prompt as Administrator and run:</p>
+<ol>
+<li>rendom /list  </li>
+<li>notepad Domainlist.xml  </li>
+<li>change all occurrences of <strong>DNSname</strong> to match your new domain – do the same with the <strong>NetBoisName</strong> for <strong>ForesetRoot</strong> – then save and close  </li>
+<li>rendom /showforest  </li>
+<li>rendom /upload  </li>
+<li>rendom /prepare  </li>
+<li>rendom /execute – and wait to be signed off</li>
+</ol>
+<p>4. Login into the new domain (beware the login will default to the old login for now as it was the last used one) and check that all is well in computer properties.</p>
+<p>5. Open Command Prompt again as Administrator and run (replace OLD_ and NEW_’s with your domains:</p>
+<ol>
+<li>gpfixup /olddns:&lt;OLD_DOMAIN&gt; /newdns:&lt;NEW_DOMAIN&gt;  </li>
+<li>gpfixup /oldnb:&lt;OLD_NETBIOS&gt; /newnb:&lt;NEW_NETBIOS&gt;  </li>
+<li>rendom /clean.  </li>
+<li>rendom /end</li>
+</ol>
+<p>6. Rejoin old domain computers to this renamed DC or whatever you were wanting to do before.</p>

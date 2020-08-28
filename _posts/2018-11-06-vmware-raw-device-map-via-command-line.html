@@ -1,0 +1,32 @@
+---
+layout: post
+title: VMware Raw Device Map via Command Line
+date: 2018-11-06 11:34:49.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '23974643347'
+  timeline_notification: '1541504091'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/11/06/vmware-raw-device-map-via-command-line/"
+---
+<p>Logon to your ESX host and run the following command to map a physical disk to a rdm file in the folder where you VM is located:</p>
+<pre class="">vmkfstools -r /vmfs/devices/disks/naa.XXXXXXXXXXXXXXXXXXXXXXXXX   rdm1.vmdk</pre>
+<p>Edit your VMX file to point to the newly created RDM disk:</p>
+<pre>scsi0:2.present = "TRUE"
+scsi0:2.deviceType = "scsi-hardDisk"
+scsi0:2.fileName = "rdm1.vmdk"
+scsi0:2.mode = "independent-persistent"
+scsi0:2.redo = ""</pre>

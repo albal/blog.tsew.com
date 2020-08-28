@@ -1,0 +1,35 @@
+---
+layout: post
+title: Re-enabling a failed RAID Array HP410
+date: 2018-01-10 17:13:10.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '13439013232'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/01/10/re-enabling-a-failed-raid-array-hp410/"
+---
+<p>Sometimes a disk will drop out a RAID array, especially if you have drives that don't support a low latency error recovery such as the Seagate Barracuda SFF drives.  You should notice an alarm in ESX or your operating system that says the Logical Drive has failed.  Associated with this will be a physical drive failure too.</p>
+<p>To recovery from the problem you will need to remove the affected drive for 10 seconds and then re-insert the drive into the slot it came from.  You can do all of this while the system is booted into the array management software.</p>
+<p>Once you have the physical drive recognised as operational again then you can make steps to recover the logical drive.  In my case I am using ESX but any other operating system that can use the hpssacli utility should be the same.</p>
+<p>First show the status of the logical drive:</p>
+<blockquote><p>./hpssacli ctrl slot=0 ld 1 show status</p>
+<p>logicaldrive 1 (14.6 TB, 0): Failed</p></blockquote>
+<p>Now re-enable the logical drive:</p>
+<blockquote><p>./hpssacli ctrl slot=0 ld 1 modify reenable forced</p></blockquote>
+<p>Now check the logical drive again:</p>
+<blockquote><p>./hpssacli ctrl slot=0 ld 1 show status</p>
+<p>logicaldrive 1 (14.6 TB, 0): OK</p></blockquote>
+<p>For most people the solution to this ongoing problem would be to use drives that support a lower recovery latency such as WD Reds but until they do them in large capacities I will be sticking with my 4TB Barracudas.</p>

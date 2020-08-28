@@ -1,0 +1,31 @@
+---
+layout: post
+title: Setup Windows Server Essentials R2 with WAAD SSO
+date: 2014-04-04 15:24:59.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Windows Home Server
+tags: []
+meta:
+  _publicize_pending: '1'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2014/04/04/setup-windows-server-essentials-r2-with-waad-sso/"
+---
+<p>SImple you would think but there are a few steps more than what you may first think to getting SSO through Windows Azure Active Directory working.&nbsp; </p>
+<p>Next you need to install Active Directory Federated Services.&nbsp; You do this through Server Manager-&gt;Roles on your WSE box.&nbsp; The go to the flag in Server Manager and select the post deployment details.&nbsp; Follow the wizard creating new managed service user and creating the KDS root key as instructed.</p>
+<p>Install the Windows Azure Active Directory Module.&nbsp; You will also need the Microsoft Online Services Sign-In Assistant for IT Professionals BETA module too.&nbsp; Install .net 3.5 through roles and features.</p>
+<p>In my case I had an already confirmed domain but I needed to convert this to Federated for SSO.&nbsp; Use Connect-MsolService with the organizational account for your domain and then the Convert-MsolDomainToFederated –DominaName “domain.tld” </p>
+<p>In Windows Azure you should confirm that the domain name is now marked as verified and is configured for SSO.&nbsp; </p>
+<p>Log off and log back on again – actually I did a restart to install updates.</p>
+<p>Then download dirsync and install on your local WSE.</p>
+<p><a href="http://albal21.files.wordpress.com/2014/04/image.png"><img title="image" style="border-top:0;border-right:0;background-image:none;border-bottom:0;padding-top:0;padding-left:0;border-left:0;display:inline;padding-right:0;" border="0" alt="image" src="{{ site.baseurl }}/assets/image_thumb.png" width="244" height="176" /></a></p>
+<p>After running it you should all be in sync.&nbsp; If you change identities used for the sync then you’ll need to run the tool again.</p>

@@ -1,0 +1,26 @@
+---
+layout: post
+title: Deleting old ZFS signatures from a disk
+date: 2018-11-08 12:11:38.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '24047721974'
+  timeline_notification: '1541679099'
+author:
+  login: albal21
+  email: al@tsew.net
+  display_name: Al
+  first_name: ''
+  last_name: ''
+permalink: "/2018/11/08/deleting-old-zfs-signatures-from-a-disk/"
+---
+<p>If you wish to reuse a disk for ceph it has to be clear of previous filesystem signatures such as ZFS.  To clear all the signatures use wipefs:</p>
+<pre>sudo wipefs --all --force /dev/vdb</pre>
